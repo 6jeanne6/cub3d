@@ -40,6 +40,9 @@ MLXFLAG 		= -L./${MINILBX_PATH} -lmlx -lXext -lX11 -lm
 SRCDIR 		= srcs
 
 SRC			=	${SRCDIR}/mandatory/main.c \
+				${SRCDIR}/mandatory/parsing/parsing.c \
+				${SRCDIR}/mandatory/parsing/parsing_utils.c \
+				${SRCDIR}/mandatory/parsing/get_info.c \
 
 
 # BONUSDIR	= 	${SRCDIR}/bonus

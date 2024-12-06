@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:17 by jewu             ###   ########.fr       */
+/*   Updated: 2024/12/06 16:34:56 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,49 @@
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 
+# define  NO 1
+# define  SO 2
+# define  WE 3
+# define  EA 4
+# define  F 5
+# define  C 6
+
+
 // **********************************
-// *          Game assets           *
+// *          Structures            *
 // **********************************
 
-# define OAK_TREE		"assets/oak_tree.xpm"
-# define OLD_WOOD		"assets/old_wood.xpm"
-# define PLYWOOD		"assets/plywood.xpm"
-# define PLANT			"assets/twisted_plant.xpm"
+typedef struct s_image
+{
+	void	*mlx_img;
+
+	int		width;
+	int		height;
+
+} t_image
+
+typedef struct s_info
+{
+	t_image	*textures[4];
+	int		floor_rgb[3];
+	int		ceiling_rgb[3];
+	void	*mlx_ptr;
+	char	**map;
+	int		flag;
+	int		heigth;
+	int		length;
+
+} t_info
+
+// **********************************
+// *          Functions             *
+// **********************************
+
+int	parse_cubed(t_info *info, char **argv);
+int	ft_isspace(char c);
+
+int	get_rgb(t_info *info, char *line, int identifier);
+int	get_texture(t_info *info, char *line, int identifier);
 
 #endif
+
