@@ -4,7 +4,7 @@
 
 NAME	= libft.a
 AR		= ar -crs
-CFLAG	= -Wall -Wextra -Werror -g3
+CFLAG	= -g3 #-Wall -Wextra -Werror 
 CC		= cc
 
 ################################################################################
@@ -87,9 +87,7 @@ FT_PRINTF	= ${SRCDIR}/ft_printf/ft_printf.c \
 		  	  ${SRCDIR}/ft_printf/ft_printf_uitoa.c \
 		  	  ${SRCDIR}/ft_printf/ft_putchar.c \
 
-GNL			= ${SRCDIR}/get_next_line/get_next_line_bonus.c \
-		  	  ${SRCDIR}/get_next_line/get_next_line.c \
-		  	  ${SRCDIR}/get_next_line/get_next_line_utils_bonus.c \
+GNL			= ${SRCDIR}/get_next_line/get_next_line.c \
 		  	  ${SRCDIR}/get_next_line/get_next_line_utils.c \
 
 SRC 		= ${FT_IS} ${FT_LST} ${FT_STR} ${FT_FD} ${FT_MEM} ${FT_TO} ${LIBFT} ${FT_PRINTF} ${GNL}

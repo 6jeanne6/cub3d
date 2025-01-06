@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:03:16 by jewu              #+#    #+#             */
-/*   Updated: 2024/10/12 15:19:38 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/02 13:42:52 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stddef.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
-# include "get_next_line_bonus.h"
 
 // ~~~~~~~~~~~~~~~~~FIRST PART~~~~~~~~~~~~~~~~~
 
