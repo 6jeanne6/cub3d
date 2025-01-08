@@ -6,74 +6,78 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:41:09 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:45:05 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:47:19 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	check_first_line(char **map)
+// Function to get the maximum width of the map
+static int	get_max_width(char **map, int height)
 {
-	int	j;
-
-	j = 0;
-	while (map[0][j] != '\0')
-	{
-		if (map[0][j] != '1')
-			return (false);
-		j++;
-	}
-	return (true);
-}
-
-static bool	check_last_line(char **map, int height)
-{
-	int	j;
-
-	j = 0;
-	while (map[height - 1][j] != '\0')
-	{
-		if (map[height - 1][j] != '1')
-			return (false);
-		j++;
-	}
-	return (true);
-}
-
-static bool	check_columns(char **map, int height)
-{
-	int	i;
 	int	width;
+	int	i;
+	int	len;
 
+	width = 0;
 	i = 0;
 	while (i < height)
 	{
-		if (map[i][0] != '1')
-			return (false);
-		width = strlen(map[i]);
-		if (map[i][width - 1] != '1')
-			return (false);
+		len = 0;
+		while (map[i][len] != '\0')
+			len++;
+		if (len > width)
+			width = len;
+		i++;
+	}
+	return (width);
+}
+
+// Function to check the cells
+static bool	check_cells(t_map_info *info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < info->height)
+	{
+		j = 0;
+		while (info->map[i][j] != '\0')
+		{
+			if (info->map[i][j] == '0' && !info->visited[i][j])
+			{
+				if (!flood_fill(info, i, j))
+					return (false);
+			}
+			j++;
+		}
 		i++;
 	}
 	return (true);
 }
 
+// Function to check if the region is surrounded by 1s
+static bool	is_surrounded_by_ones(t_map_info *info)
+{
+	info->width = get_max_width(info->map, info->height);
+	init_visited(info);
+	if (!check_cells(info))
+	{
+		free_visited(info);
+		return (false);
+	}
+	free_visited(info);
+	return (true);
+}
+
 bool	check_borders(char **map, int height)
 {
-	if (check_first_line(map) == false)
-	{
-		printf("Error: First line is not properly closed.\n");
+	t_map_info	info;
+
+	info.map = map;
+	info.height = height;
+	if (!is_surrounded_by_ones(&info))
 		return (false);
-	}
-	if (check_last_line(map, height) == false)
-	{
-		printf("Error: Last line is not properly closed.\n");
-		return (false);
-	}
-	if (check_columns(map, height) == false)
-	{
-		printf("Error: Columns are not properly closed.\n");
-		return (false);
-	}
 	return (true);
 }

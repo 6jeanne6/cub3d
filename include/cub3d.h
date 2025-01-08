@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/06 17:38:03 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:46:28 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,19 @@
 # define FAILURE 1
 # define SUCCESS 0
 # define ERROR_MAP 2
-# define VALID_MAP_CHARS "01NSEW\n"
+# define VALID_MAP_CHARS "01NSEW"
 
 /* ****************************** */
 /*          Structures            */
 /* ****************************** */
+
+typedef struct s_map_info
+{
+	char	**map;
+	int		height;
+	int		width;
+	bool	**visited;
+}			t_map_info;
 
 typedef struct s_map_node
 {
