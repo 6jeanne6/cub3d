@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:45 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 18:03:26 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:32:44 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ int	ft_isspace(char c)
 int	map_is_cub(char *argv)
 {
 	int	len;
+	int	i;
 
-	if (!argv)
-		return (FAILURE);
 	len = ft_strlen(argv);
-	if (len < 5)
+	i = 0;
+	if (len < 4)
 		return (FAILURE);
-	if (ft_strncmp(argv + len - 4, ".cub", 4) == 0)
+	while (argv[i] != '.')
+		i++;
+	if (ft_strncmp(argv + len, ".cub", 4) == 0
+		|| ft_strncmp(argv + i, ".cub", len - i) == 0)
 		return (SUCCESS);
 	return (FAILURE);
 }

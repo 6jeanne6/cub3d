@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:42:54 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:11:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ t_info	*init_info(void)
 	info->mlx_ptr = mlx_init();
 	if (!info->mlx_ptr)
 		return (error("mlx_init failed"), free_info(info), NULL);
-	info->height = 0;
+	info->player = ft_calloc(1, sizeof(t_player));
+	if (!info->player)
+		return (free_info(info), NULL);
 	info->map = NULL;
 	info->loaded_elements = 0;
 	return (info);

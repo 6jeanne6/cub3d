@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/06 17:38:03 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:41:27 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@
 # define FAILURE 1
 # define SUCCESS 0
 # define ERROR_MAP 2
-# define VALID_MAP_CHARS "01NSEW\n"
+# define VALID_MAP_CHARS "01NSEW"
+# define WIDTH 1500
+# define HEIGHT 1000
+# define TILE_SIZE 42
 
 /* ****************************** */
 /*          Structures            */
@@ -59,15 +62,26 @@ typedef struct s_image
 	int					height;
 }						t_image;
 
+typedef struct s_player
+{
+	int	width;
+	int	height;
+	int	x;
+	int	y;
+}				t_player;
+
 typedef struct s_info
 {
 	t_image				*textures[4];
+	t_player			*player;
 	int					floor_rgb[3];
 	int					ceiling_rgb[3];
 	void				*mlx_ptr;
+	void				*win_ptr;
 	char				**map;
 	int					loaded_elements;
 	int					height;
+	int					width;
 	int					parsing_succeed;
 }						t_info;
 
@@ -91,11 +105,22 @@ int		check_identifier(t_info *info, char *line);
 bool	check_borders(char **map, int height);
 bool	is_map_line(char *line, t_info *info);
 
+/*Initialization*/
+
+int		init_everything(t_info *info, t_player *player);
+int		handle_keypress(int key, t_info *info);
+
+void	draw_player(t_info *info, t_player *player);
+void	draw_minimap(t_info *info, t_player *player);
+
 /* Error */
 void	error(char *msg);
 
 /* Free functions */
 void	free_info(t_info *info);
+
+int		free_everything(t_info *info);
+int		close_and_exit(t_info *info);
 
 /* Debug */
 void	print_info(t_info *info);
