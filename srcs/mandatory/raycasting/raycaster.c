@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 10:40:58 by jewu              #+#    #+#             */
+/*   Updated: 2025/01/10 17:27:42 by jewu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+//raycasting
+//1: initialize ray angle at left of FOV \ PLAYER /
+//2: cast a rayon to fill screen width <---------->
+//3: get size of hypotenuse by getting
+// 		- horizontal intersection (top/bottom edge of tile) point
+// 		- vertical intersection (left/right edge of tile) point
+//4: wall rendering
+//5: continue with next ray by incrementing its angle
+void	raycasting(t_info *info, t_ray *ray)
+{
+	int		rayon;
+	double	h_inter;
+	double	v_inter;
+
+	rayon = 0;
+	ray->ray_angle = info->player->angle - (FOV / 2);
+	while (rayon < WIDTH)
+	{
+		ray->h_flag = 0;
+		h_inter = get_h_intersection(info, normal_angle(ray->ray_angle));
+		v_inter = get_v_intersection(info, normal_angle(ray->ray_angle));
+		if (h_inter >= v_inter)
+			ray->distance = v_inter;
+		else
+			ray->distance = h_inter;
+		wall_rendering(info, ray);
+		ray++;
+		ray->ray_angle += info->player->fov / WIDTH;
+	}
+}

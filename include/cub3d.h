@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/08 15:41:27 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/10 17:01:56 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@
 # define SUCCESS 0
 # define ERROR_MAP 2
 # define VALID_MAP_CHARS "01NSEW"
-# define WIDTH 1500
-# define HEIGHT 1000
-# define TILE_SIZE 42
+
+# define WIDTH 1300
+# define HEIGHT 800
+# define TILE_SIZE 64
+# define FOV 60
+# define ROT_SPEED 0.01
+# define PI 3.14159265359
 
 /* ****************************** */
 /*          Structures            */
@@ -62,27 +66,48 @@ typedef struct s_image
 	int					height;
 }						t_image;
 
+typedef struct s_ray
+{
+	double	ray_angle;
+	double	distance;
+
+	float	horizontal_x;
+	float	horizontal_y;
+	float	vertical_x;
+	float	vertical_y;
+
+	int		h_flag;
+}				t_ray;
+
 typedef struct s_player
 {
-	int	width;
-	int	height;
-	int	x;
-	int	y;
+	int		p_x;
+	int		p_y;
+
+	double	angle;
+
+	float	fov;
 }				t_player;
 
 typedef struct s_info
 {
 	t_image				*textures[4];
+	t_ray				*ray;
 	t_player			*player;
+
 	int					floor_rgb[3];
 	int					ceiling_rgb[3];
-	void				*mlx_ptr;
-	void				*win_ptr;
-	char				**map;
 	int					loaded_elements;
+	int					map_px;
+	int					map_py;
 	int					height;
 	int					width;
 	int					parsing_succeed;
+
+	void				*mlx_ptr;
+	void				*win_ptr;
+
+	char				**map;
 }						t_info;
 
 /* ****************************** */
@@ -107,11 +132,21 @@ bool	is_map_line(char *line, t_info *info);
 
 /*Initialization*/
 
-int		init_everything(t_info *info, t_player *player);
+int		init_everything(t_info *info);
 int		handle_keypress(int key, t_info *info);
+int		init_player(t_info *info, t_player *player);
 
-void	draw_player(t_info *info, t_player *player);
-void	draw_minimap(t_info *info, t_player *player);
+//void	draw_player(t_info *info, t_player *player);
+//void	draw_minimap(t_info *info, t_player *player);
+
+/*Raycasting*/
+void	raycasting(t_info *info, t_ray *ray);
+void	wall_rendering(t_info *info, t_ray *ray);
+
+double	normal_angle(double angle);
+
+float	get_h_intersection(t_info *info, float angle);
+float	get_v_intersection(t_info *info, float angle);
 
 /* Error */
 void	error(char *msg);

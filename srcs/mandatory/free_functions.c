@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:10:40 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/08 13:11:35 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/09 10:19:02 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	free_info(t_info *info)
 		free_map(info);
 	if (info->player)
 		free(info->player);
+	if (info->ray)
+		free(info->ray);
 	free(info);
 }
 
