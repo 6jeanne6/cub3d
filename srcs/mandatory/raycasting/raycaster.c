@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:40:58 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/10 17:27:42 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/13 10:18:58 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	raycasting(t_info *info, t_ray *ray)
 	while (rayon < WIDTH)
 	{
 		ray->h_flag = 0;
-		h_inter = get_h_intersection(info, normal_angle(ray->ray_angle));
-		v_inter = get_v_intersection(info, normal_angle(ray->ray_angle));
+		h_inter = get_h_line_intersection(info, normal_angle(ray->ray_angle));
+		v_inter = get_v_line_intersection(info, normal_angle(ray->ray_angle));
 		if (h_inter >= v_inter)
 			ray->distance = v_inter;
 		else

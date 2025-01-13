@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/10 17:01:56 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/13 15:46:46 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,10 +143,14 @@ int		init_player(t_info *info, t_player *player);
 void	raycasting(t_info *info, t_ray *ray);
 void	wall_rendering(t_info *info, t_ray *ray);
 
+int		check_intersection(double angle, float *inter, float *step, bool is_h);
+int		is_right_zone(float angle, char c);
+int		hit_the_wall(t_info *info, float x, float y);
+
 double	normal_angle(double angle);
 
-float	get_h_intersection(t_info *info, float angle);
-float	get_v_intersection(t_info *info, float angle);
+float	get_h_line_intersection(t_info *info, float angle);
+float	get_v_line_intersection(t_info *info, float angle);
 
 /* Error */
 void	error(char *msg);
