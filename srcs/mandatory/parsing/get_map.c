@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:32:14 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:57:20 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:00:30 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static int	load_map_to_info_structure(t_info *info, char *tmp_map[])
 {
 	int	i;
 
-	info->map = malloc(sizeof(char *) * (info->height + 1));
+	info->map = malloc(sizeof(char *) * (info->rows + 1));
 	if (!info->map)
 		return (1);
 	i = 0;
-	while (i < info->height)
+	while (i < info->rows)
 	{
 		info->map[i] = tmp_map[i];
 		i++;
 	}
-	info->map[info->height] = NULL;
+	info->map[info->rows] = NULL;
 	info->loaded_elements++;
 	return (0);
 }
@@ -56,12 +56,12 @@ int	get_map_from_the_file(char *tmp_map[], t_info *info, int fd, char *line)
 {
 	while (line != NULL)
 	{
-		tmp_map[info->height] = copy_line_from_file(line);
-		if (!tmp_map[info->height])
+		tmp_map[info->rows] = copy_line_from_file(line);
+		if (!tmp_map[info->rows])
 			return (1);
 		free(line);
 		line = get_next_line(fd);
-		info->height++;
+		info->rows++;
 	}
 	return (0);
 }

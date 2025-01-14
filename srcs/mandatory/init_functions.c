@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:42:54 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:40:29 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_info	*init_info(void)
 	info->mlx_ptr = mlx_init();
 	if (!info->mlx_ptr)
 		return (error("mlx_init failed"), free_info(info), NULL);
-	info->height = 0;
+	info->rows = 0;
+	info->cols = 0;
 	info->map = NULL;
 	info->loaded_elements = 0;
 	return (info);

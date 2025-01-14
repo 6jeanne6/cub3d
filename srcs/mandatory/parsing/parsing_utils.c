@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:45 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/08 02:45:55 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:58:19 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,16 @@ int	ft_isspace(char c)
 }
 
 // Function that checks if the file is a .cub extension
-// Function that checks if the file is a .cub extension
 int	map_is_cub(char *argv)
 {
 	int	len;
-	int	i;
 
-	len = ft_strlen(argv);
-	i = 0;
-	if (len < 4)
+	if (!argv)
 		return (FAILURE);
-	while (argv[i] != '.')
-		i++;
-	if (ft_strncmp(argv + len, ".cub", 4) == 0
-		|| ft_strncmp(argv + i, ".cub", len - i) == 0)
+	len = ft_strlen(argv);
+	if (len < 5)
+		return (FAILURE);
+	if (ft_strncmp(argv + len - 4, ".cub", 4) == 0)
 		return (SUCCESS);
 	return (FAILURE);
 }
@@ -56,4 +52,29 @@ bool	is_map_line(char *line, t_info *info)
 		}
 	}
 	return (false);
+}
+
+// Function to get the player 2D position
+void	get_player_position(t_info *info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (info->map[i] != NULL)
+	{
+		j = 0;
+		while (info->map[i][j] != '\0')
+		{
+			if (info->map[i][j] == 'N' || info->map[i][j] == 'S'
+				|| info->map[i][j] == 'E' || info->map[i][j] == 'W')
+			{
+				info->map_px = j;
+				info->map_py = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
 }

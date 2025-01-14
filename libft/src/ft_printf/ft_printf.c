@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:49:55 by jewu              #+#    #+#             */
-/*   Updated: 2024/02/11 14:54:10 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/14 17:03:22 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	ft_printf(const char *input, ...)
 * 	~~~ Fonctions variadiques/Ellipse ~~~
 *	int	ft_printf(const char *input, ...)
 * • va_list	args = structure qui va stocker l'info 
-* • void	va_start(va_list args, input) = macro qui initialise un objet va_list 
+* • void	va_start(va_list args, input) = macro qui initialise un objet va_list
 * 	pour parcourir les arguments variables
 * • argument_type	va_arg(va_list argument_list, argument_type) 
 *	→ macro qui recupere l'argument suivant de la liste

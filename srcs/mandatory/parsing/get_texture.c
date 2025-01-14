@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:59:59 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:00:44 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ static int	already_created(t_info *info, int identifier)
 static int	get_image(t_info *info, char *texture, int identifier)
 {
 	int	width;
-	int	height;
+	int	rows;
 
 	width = 32;
-	height = 32;
+	rows = 32;
 	if (already_created(info, identifier) == FAILURE)
 		return (error("Double texture detected"), FAILURE);
 	if (identifier == NO)
 		info->textures[0]->mlx_img = mlx_xpm_file_to_image(
-				info->mlx_ptr, texture, &width, &height);
+				info->mlx_ptr, texture, &width, &rows);
 	else if (identifier == SO)
 		info->textures[1]->mlx_img = mlx_xpm_file_to_image(
-				info->mlx_ptr, texture, &width, &height);
+				info->mlx_ptr, texture, &width, &rows);
 	else if (identifier == WE)
 		info->textures[2]->mlx_img = mlx_xpm_file_to_image(
-				info->mlx_ptr, texture, &width, &height);
+				info->mlx_ptr, texture, &width, &rows);
 	else if (identifier == EA)
 		info->textures[3]->mlx_img = mlx_xpm_file_to_image(
-				info->mlx_ptr, texture, &width, &height);
+				info->mlx_ptr, texture, &width, &rows);
 	info->loaded_elements += 1;
 	return (0);
 }

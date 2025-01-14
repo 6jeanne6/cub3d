@@ -52,7 +52,6 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/parsing/parse_map.c \
 				${SRCDIR}/mandatory/parsing/parsing_utils.c \
 				${SRCDIR}/mandatory/parsing/check_borders.c \
-				${SRCDIR}/mandatory/parsing/flood_fill.c \
 
 
 # BONUSDIR	= 	${SRCDIR}/bonus

@@ -52,7 +52,7 @@ static int	read_and_extract(t_info *info, int fd)
 		return (error("Empty file"), FAILURE);
 	while (line)
 	{
-		if (line[0] == '\0')
+		if (line[0] == '\0' || line[0] == '\n')
 		{
 			free(line);
 			line = get_next_line(fd);

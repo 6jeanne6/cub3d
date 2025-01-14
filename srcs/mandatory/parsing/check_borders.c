@@ -6,78 +6,56 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:41:09 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/08 02:47:19 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:59:24 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Function to get the maximum width of the map
-static int	get_max_width(char **map, int height)
+// Function to check if a cell is bordered by invalid cells
+static int	is_bordered(char **map, int i, int j)
 {
-	int	width;
-	int	i;
-	int	len;
-
-	width = 0;
-	i = 0;
-	while (i < height)
-	{
-		len = 0;
-		while (map[i][len] != '\0')
-			len++;
-		if (len > width)
-			width = len;
-		i++;
-	}
-	return (width);
+	if (i == 0 || j == 0)
+		return (1);
+	if (map[i + 1] == NULL || map[i - 1] == NULL
+		|| map[i][j + 1] == '\0' || map[i][j - 1] == '\0'
+		|| map[i - 1][j] == '\0' || map[i][j + 1] == 0
+		|| map[i][j - 1] == 0)
+		return (1);
+	if (ft_isspace(map[i - 1][j]) || ft_isspace(map[i + 1][j])
+		|| ft_isspace(map[i][j + 1]) || ft_isspace(map[i][j - 1])
+		|| map[i - 1][j] == 0 || map[i + 1][j] == 0
+		|| map[i][j - 1] == 0 || map[i][j + 1] == 0)
+		return (1);
+	return (0);
 }
 
-// Function to check the cells
-static bool	check_cells(t_map_info *info)
+// Function to check if the map is surrounded by 1s
+int	check_borders(t_info *info, char **map)
 {
-	int	i;
-	int	j;
+	size_t	max_cols;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i < info->height)
+	max_cols = 0;
+	while (map[i])
 	{
 		j = 0;
-		while (info->map[i][j] != '\0')
+		while (map[i][j])
 		{
-			if (info->map[i][j] == '0' && !info->visited[i][j])
+			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
 			{
-				if (!flood_fill(info, i, j))
-					return (false);
+				if (is_bordered(map, i, j))
+					return (1);
 			}
+			if (ft_strlen(map[i]) > max_cols)
+				max_cols = ft_strlen(map[i]);
 			j++;
 		}
 		i++;
 	}
-	return (true);
-}
-
-// Function to check if the region is surrounded by 1s
-static bool	is_surrounded_by_ones(t_map_info *info)
-{
-	info->width = get_max_width(info->map, info->height);
-	init_visited(info);
-	if (!check_cells(info))
-	{
-		free_visited(info);
-		return (false);
-	}
-	free_visited(info);
-	return (true);
-}
-
-bool	check_borders(char **map, int height)
-{
-	t_map_info	info;
-
-	info.map = map;
-	info.height = height;
-	if (!is_surrounded_by_ones(&info))
-		return (false);
-	return (true);
+	info->cols = max_cols;
+	return (0);
 }

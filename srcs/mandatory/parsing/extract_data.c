@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 16:59:04 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 18:16:16 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:55:18 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	extract_data_from_file(t_info *info, char *line, int fd)
 	return_value = 0;
 	while (line[i] != '\0' && ft_isspace(line[i]) == 1)
 		i++;
+	if (line_with_only_whitespace(line) == true)
+		return (SUCCESS);
 	if (info->loaded_elements != 6)
 	{
 		id = get_identifier(info, line);

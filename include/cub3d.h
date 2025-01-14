@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/08 02:46:28 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:29:57 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,6 @@
 /*          Structures            */
 /* ****************************** */
 
-typedef struct s_map_info
-{
-	char	**map;
-	int		height;
-	int		width;
-	bool	**visited;
-}			t_map_info;
-
-typedef struct s_map_node
-{
-	char				*line;
-	struct s_map_node	*next;
-}						t_map_node;
-
 typedef struct s_image
 {
 	void				*mlx_img;
@@ -75,7 +61,10 @@ typedef struct s_info
 	void				*mlx_ptr;
 	char				**map;
 	int					loaded_elements;
-	int					height;
+	int					cols;
+	int					rows;
+	int					map_px;
+	int					map_py;
 	int					parsing_succeed;
 }						t_info;
 
@@ -96,8 +85,10 @@ int		parse_map(t_info *info);
 int		ft_isspace(char c);
 int		map_is_cub(char *argv);
 int		check_identifier(t_info *info, char *line);
-bool	check_borders(char **map, int height);
+int		check_borders(t_info *info, char **map);
 bool	is_map_line(char *line, t_info *info);
+void	get_player_position(t_info *info);
+bool	line_with_only_whitespace(char *line);
 
 /* Error */
 void	error(char *msg);
