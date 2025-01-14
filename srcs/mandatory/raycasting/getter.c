@@ -6,11 +6,17 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:55:59 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/13 16:46:00 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/14 17:05:16 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//get texture of the wall
+t_image	*get_wall_texture_rendering(t_info *info, int wall_flag)
+{
+	;
+}
 
 //get coordinates of intersection  point for
 //vertical line (ray touches left or right side of tile)

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/13 15:46:46 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/14 17:07:23 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ typedef struct s_ray
 	float	vertical_x;
 	float	vertical_y;
 
-	int		h_flag;
+	int		wall_flag;
+	int		index;
 }				t_ray;
 
 typedef struct s_player
@@ -141,7 +142,6 @@ int		init_player(t_info *info, t_player *player);
 
 /*Raycasting*/
 void	raycasting(t_info *info, t_ray *ray);
-void	wall_rendering(t_info *info, t_ray *ray);
 
 int		check_intersection(double angle, float *inter, float *step, bool is_h);
 int		is_right_zone(float angle, char c);
@@ -151,6 +151,11 @@ double	normal_angle(double angle);
 
 float	get_h_line_intersection(t_info *info, float angle);
 float	get_v_line_intersection(t_info *info, float angle);
+
+/*Rendering*/
+void	wall_rendering(t_info *info, int rayon);
+
+t_image	*get_wall_texture_rendering(t_info *info, int wall_flag);
 
 /* Error */
 void	error(char *msg);
