@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 15:14:31 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 16:58:44 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 static int	setup_id(t_info *info, int identifier)
 {
 	if (identifier == NO)
-		info->textures[0]->id = NO;
+		info->textures[0]->id = "NO";
 	else if (identifier == SO)
-		info->textures[1]->id = SO;
+		info->textures[1]->id = "SO";
 	else if (identifier == WE)
-		info->textures[2]->id = WE;
+		info->textures[2]->id = "WE";
 	else if (identifier == EA)
-		info->textures[3]->id = EA;
+		info->textures[3]->id = "EA";
 	else
 		return (FAILURE);
 	return (SUCCESS);

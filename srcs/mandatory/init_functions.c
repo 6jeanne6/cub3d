@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 15:11:29 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 16:20:27 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ static int	init_textures(t_info *info)
 		i++;
 	}
 	return (1);
+}
+
+static int	alloc_structures(t_info *info)
+{
+	info->player = ft_calloc(1, sizeof(t_player));
+	if (!info->player)
+		return (free_info(info), 1);
+	info->ray = ft_calloc(1, sizeof(t_ray));
+	if (!info->ray)
+		return (free_info(info), 1);
+	return (0);
 }
 
 // Function that initialize the info struct
@@ -56,5 +67,7 @@ t_info	*init_info(void)
 	info->cols = 0;
 	info->map = NULL;
 	info->loaded_elements = 0;
+	if (alloc_structures(info) == 1)
+		return (error("Error of alloc"), NULL);
 	return (info);
 }

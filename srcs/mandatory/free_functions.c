@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:10:40 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 15:11:13 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 16:13:48 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	free_info(t_info *info)
 	if (!info)
 		return ;
 	free_img(info);
+	if (info->win_ptr)
+		mlx_destroy_window(info->mlx_ptr, info->win_ptr);
 	if (info->mlx_ptr)
 	{
 		mlx_destroy_display(info->mlx_ptr);
@@ -53,5 +55,22 @@ void	free_info(t_info *info)
 	}
 	if (info->map)
 		free_map(info);
+	if (info->player)
+		free(info->player);
+	if (info->ray)
+		free(info->ray);
 	free(info);
+}
+
+int	close_and_exit(t_info *info)
+{
+	free_info(info);
+	exit(0);
+}
+
+//free all structures
+int	free_everything(t_info *info)
+{
+	free_info(info);
+	return (1);
 }
