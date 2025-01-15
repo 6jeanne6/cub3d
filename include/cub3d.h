@@ -6,7 +6,7 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/14 16:29:57 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:22:15 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_image
 	void				*mlx_img;
 	int					width;
 	int					height;
+	int					id;
 }						t_image;
 
 typedef struct s_info

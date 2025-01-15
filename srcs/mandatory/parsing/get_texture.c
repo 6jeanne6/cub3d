@@ -6,11 +6,31 @@
 /*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/13 15:00:44 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:22:44 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// Function to setup the structure id of the texture
+static int	setup_id(t_info *info, int identifier)
+{
+	if (identifier == NO)
+		info->textures[0]->id = NO;
+	else if (identifier == SO)
+		info->textures[1]->id = SO;
+	else if (identifier == WE)
+		info->textures[2]->id = WE;
+	else if (identifier == EA)
+		info->textures[3]->id = EA;
+	else if (identifier == F)
+		info->textures[4]->id = F;
+	else if (identifier == C)
+		info->textures[5]->id = C;
+	else
+		return (FAILURE);
+	return (SUCCESS);
+}
 
 // Function to check if the texture is already created
 // Success if the texture is not created
@@ -88,6 +108,7 @@ int	get_texture(t_info *info, char *line, int identifier)
 	ft_strlcpy(texture, &line[i], j - i + 1);
 	if (get_image(info, texture, identifier) == FAILURE)
 		return (free(texture), FAILURE);
+	setup_id(info, identifier);
 	free(texture);
 	return (SUCCESS);
 }
