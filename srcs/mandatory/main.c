@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:24:44 by jewu              #+#    #+#             */
-/*   Updated: 2024/12/05 13:39:55 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 15:48:09 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	write(1, "CA MARCHE\n", 10);
-	return (0);
+	t_info	*info;
+
+	if (argc != 2)
+		return (error("Invalid number of arguments"), 1);
+	info = init_info();
+	if (!info)
+		return (1);
+	if (parsing(info, argv) == FAILURE)
+		return (free_info(info), 1);
+	free_info(info);
+	return (SUCCESS);
 }
