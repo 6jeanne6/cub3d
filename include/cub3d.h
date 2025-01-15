@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/14 17:07:23 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 14:25:17 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define ERROR_MAP 2
 # define VALID_MAP_CHARS "01NSEW"
 
-# define WIDTH 1300
-# define HEIGHT 800
+# define WIDTH 900
+# define HEIGHT 900
 # define TILE_SIZE 64
 # define FOV 60
 # define ROT_SPEED 0.01
@@ -76,7 +76,7 @@ typedef struct s_ray
 	float	vertical_x;
 	float	vertical_y;
 
-	int		wall_flag;
+	int		horizontal_flag;
 	int		index;
 }				t_ray;
 
@@ -155,7 +155,10 @@ float	get_v_line_intersection(t_info *info, float angle);
 /*Rendering*/
 void	wall_rendering(t_info *info, int rayon);
 
-t_image	*get_wall_texture_rendering(t_info *info, int wall_flag);
+float	get_x_gap(t_info *info, t_image *texture);
+
+t_image	*get_wall_texture_rendering(t_info *info, int hori_flag);
+t_image	*which_cardinal_direction(t_info *info, char *direction);
 
 /* Error */
 void	error(char *msg);

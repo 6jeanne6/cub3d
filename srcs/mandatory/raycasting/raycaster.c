@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:40:58 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/14 16:59:52 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 11:00:55 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ void	raycasting(t_info *info, t_ray *ray)
 	ray->ray_angle = info->player->angle - (FOV / 2);
 	while (rayon < WIDTH)
 	{
-		ray->wall_flag = 0;
+		ray->horizontal_flag = 0;
 		h_inter = get_h_line_intersection(info, normal_angle(ray->ray_angle));
 		v_inter = get_v_line_intersection(info, normal_angle(ray->ray_angle));
 		if (h_inter >= v_inter)
 			ray->distance = v_inter;
 		else
+		{
 			ray->distance = h_inter;
+			ray->horizontal_flag = 1;
+		}
 		wall_rendering(info, rayon);
 		rayon++;
 		ray->ray_angle += info->player->fov / WIDTH;

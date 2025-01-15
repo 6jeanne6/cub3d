@@ -6,16 +6,46 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:55:59 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/14 17:05:16 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 14:25:01 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//get texture of the wall
-t_image	*get_wall_texture_rendering(t_info *info, int wall_flag)
+//get the x_gap to know where to display pixel and
+//how to display a portion of the texture onto the wall
+float	get_x_gap(t_info *info, t_image *texture)
 {
-	;
+	float	x_gap;
+
+	if (info->ray->horizontal_flag == 0)
+		x_gap = fmodf(info->ray->vertical_y * (texture->width / TILE_SIZE),
+				TILE_SIZE);
+	else
+		x_gap = fmodf(info->ray->horizontal_x * (texture->width / TILE_SIZE),
+				TILE_SIZE);
+	return (x_gap);
+}
+
+//get texture of the wall according to the angle of the ray
+t_image	*get_wall_texture_rendering(t_info *info, int hori_flag)
+{
+	info->ray->ray_angle = normal_angle(info->ray->ray_angle);
+	if (hori_flag == 0)
+	{
+		if (info->ray->ray_angle > PI / 2 && info->ray->ray_angle < 3 * PI / 2)
+			return (which_cardinal_direction(info, "WE"));
+		else
+			return (which_cardinal_direction(info, "EA"));
+	}
+	else
+	{
+		if (info->ray->ray_angle > 0 && info->ray->ray_angle < PI)
+			return (which_cardinal_direction(info, "SO"));
+		else
+			return (which_cardinal_direction(info, "NO"));
+	}
+	return (NULL);
 }
 
 //get coordinates of intersection  point for
