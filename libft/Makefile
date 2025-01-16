@@ -4,7 +4,7 @@
 
 NAME	= libft.a
 AR		= ar -crs
-CFLAG	= -g3 #-Wall -Wextra -Werror 
+CFLAG	= -Wall -Wextra -Werror -g3
 CC		= cc
 
 ################################################################################
@@ -16,7 +16,6 @@ INCDIR 	= include
 INC		= ${INCDIR}/libft.h \
 	  	  ${INCDIR}/ft_printf.h \
 	  	  ${INCDIR}/get_next_line.h \
-	  	  ${INCDIR}/get_next_line_bonus.h \
 
 ################################################################################
 #                                 Sources                              	       #

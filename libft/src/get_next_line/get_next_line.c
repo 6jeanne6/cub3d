@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 13:53:51 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/02 13:43:54 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:27:34 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/get_next_line.h"
-#include <stdio.h>
+
 static char	*clean_stash(char *stash)
 {
 	char	*new_stash;
@@ -95,10 +95,11 @@ static char	*read_and_join(int fd, char *buffer, char *stash)
 	}
 	return (stash);
 }
-#include <stdio.h>
+
 /* Reads BUFFER_SIZE bytes, puts BUFFER_SIZE characters to buffer,
  * and stash is joined with buffer in the while loop.
  * */
+
 char	*get_next_line(int fd)
 {
 	static char	*stash;
