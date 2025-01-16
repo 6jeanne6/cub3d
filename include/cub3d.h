@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 14:25:17 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 17:01:23 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,6 @@
 /*          Structures            */
 /* ****************************** */
 
-typedef struct s_map_node
-{
-	char				*line;
-	struct s_map_node	*next;
-}						t_map_node;
-
-typedef struct s_image
-{
-	void				*mlx_img;
-	int					width;
-	int					height;
-}						t_image;
-
 typedef struct s_ray
 {
 	double	ray_angle;
@@ -90,6 +77,16 @@ typedef struct s_player
 	float	fov;
 }				t_player;
 
+typedef struct s_image
+{
+	void				*mlx_img;
+
+	int					width;
+	int					height;
+
+	char				*id;
+}						t_image;
+
 typedef struct s_info
 {
 	t_image				*textures[4];
@@ -99,16 +96,17 @@ typedef struct s_info
 	int					floor_rgb[3];
 	int					ceiling_rgb[3];
 	int					loaded_elements;
+	int					cols;
+	int					rows;
+	int					screen_width;
+	int					screen_height;
 	int					map_px;
 	int					map_py;
-	int					height;
-	int					width;
-	int					parsing_succeed;
+
+	char				**map;
 
 	void				*mlx_ptr;
 	void				*win_ptr;
-
-	char				**map;
 }						t_info;
 
 /* ****************************** */
@@ -127,18 +125,18 @@ int		get_and_parse_map(t_info *info, char *line, int fd);
 int		parse_map(t_info *info);
 int		ft_isspace(char c);
 int		map_is_cub(char *argv);
-int		check_identifier(t_info *info, char *line);
-bool	check_borders(char **map, int height);
+int		get_identifier(t_info *info, char *line);
+int		check_borders(t_info *info, char **map);
+
 bool	is_map_line(char *line, t_info *info);
+bool	line_with_only_whitespace(char *line);
+
+void	get_player_position(t_info *info);
 
 /*Initialization*/
-
 int		init_everything(t_info *info);
-int		handle_keypress(int key, t_info *info);
 int		init_player(t_info *info, t_player *player);
-
-//void	draw_player(t_info *info, t_player *player);
-//void	draw_minimap(t_info *info, t_player *player);
+int		handle_keypress(int key, t_info *info);
 
 /*Raycasting*/
 void	raycasting(t_info *info, t_ray *ray);
@@ -154,6 +152,7 @@ float	get_v_line_intersection(t_info *info, float angle);
 
 /*Rendering*/
 void	wall_rendering(t_info *info, int rayon);
+void	super_mlx_pixel_put(t_info *info, int x, int y, int color);
 
 float	get_x_gap(t_info *info, t_image *texture);
 
@@ -164,12 +163,12 @@ t_image	*which_cardinal_direction(t_info *info, char *direction);
 void	error(char *msg);
 
 /* Free functions */
-void	free_info(t_info *info);
-
 int		free_everything(t_info *info);
 int		close_and_exit(t_info *info);
 
+void	free_info(t_info *info);
+
 /* Debug */
-void	print_info(t_info *info);
+//void	print_info(t_info *info);
 
 #endif

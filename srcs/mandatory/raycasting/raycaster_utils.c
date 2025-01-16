@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:33:16 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/13 16:04:54 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 16:40:36 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	hit_the_wall(t_info *info, float x, float y)
 		return (0);
 	wall_x = floor(x / TILE_SIZE);
 	wall_y = floor(y / TILE_SIZE);
-	if (wall_x >= info->map_columns || wall_y >= info->map_rows)
+	if (wall_x >= info->cols || wall_y >= info->rows)
 		return (0);
-	if (info->map[wall_y] && wall_x <= ft_strlen(info->map[wall_y]))
+	if (info->map[wall_y] && wall_x <= (int)ft_strlen(info->map[wall_y]))
 		if (info->map[wall_y][wall_x] == '1')
 			return (0);
 	return (1);

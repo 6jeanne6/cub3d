@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 14:41:55 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 17:01:58 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,20 @@
 static void	draw_the_ceiling(t_info *info, int rayon, double bottom_pixel,
 double top_pixel)
 {
-	;
+	(void)info;
+	(void)rayon;
+	(void)bottom_pixel;
+	(void)top_pixel;
 }
 
 //DRAW THE FLOOR
 static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel,
 double top_pixel)
 {
-	;
+	(void)info;
+	(void)rayon;
+	(void)bottom_pixel;
+	(void)top_pixel;
 }
 
 //DRAW THE WALL
@@ -45,7 +51,7 @@ double top_pixel)
 		y_gap = 0;
 	while (top_pixel < bottom_pixel)
 	{
-		super_mlx_pixel_put();
+		//super_mlx_pixel_put();
 		y_gap += scale;
 		top_pixel++;
 	}

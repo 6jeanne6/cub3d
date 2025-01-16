@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:24:44 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/10 17:26:54 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 15:57:02 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,8 @@ int	main(int argc, char **argv)
 	info = init_info();
 	if (!info)
 		return (1);
-	info->parsing_succeed = 0;
 	if (parsing(info, argv) == FAILURE)
-	{
-		info->parsing_succeed = 1;
-		print_info(info);
 		return (free_info(info), 1);
-	}
-	print_info(info);
 	if (init_everything(info) == 1)
 		return (free_everything(info), 1);
 	// draw_minimap(info, info->player);

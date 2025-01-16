@@ -3,77 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   check_borders.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:41:09 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/06 17:45:05 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:07:33 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	check_first_line(char **map)
+// Function to check if a cell is bordered by invalid cells
+static int	is_bordered(char **map, int i, int j)
 {
-	int	j;
-
-	j = 0;
-	while (map[0][j] != '\0')
-	{
-		if (map[0][j] != '1')
-			return (false);
-		j++;
-	}
-	return (true);
+	if (i == 0 || j == 0)
+		return (1);
+	if (map[i + 1] == NULL || map[i - 1] == NULL
+		|| map[i][j + 1] == '\0' || map[i][j - 1] == '\0'
+		|| map[i - 1][j] == '\0' || map[i][j + 1] == 0
+		|| map[i][j - 1] == 0)
+		return (1);
+	if (ft_isspace(map[i - 1][j]) || ft_isspace(map[i + 1][j])
+		|| ft_isspace(map[i][j + 1]) || ft_isspace(map[i][j - 1])
+		|| map[i - 1][j] == 0 || map[i + 1][j] == 0
+		|| map[i][j - 1] == 0 || map[i][j + 1] == 0)
+		return (1);
+	return (0);
 }
 
-static bool	check_last_line(char **map, int height)
+// Function to check if the map is surrounded by 1s
+int	check_borders(t_info *info, char **map)
 {
-	int	j;
-
-	j = 0;
-	while (map[height - 1][j] != '\0')
-	{
-		if (map[height - 1][j] != '1')
-			return (false);
-		j++;
-	}
-	return (true);
-}
-
-static bool	check_columns(char **map, int height)
-{
-	int	i;
-	int	width;
+	size_t	max_cols;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i < height)
+	max_cols = 0;
+	while (map[i])
 	{
-		if (map[i][0] != '1')
-			return (false);
-		width = strlen(map[i]);
-		if (map[i][width - 1] != '1')
-			return (false);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
+			{
+				if (is_bordered(map, i, j))
+					return (1);
+			}
+			if (ft_strlen(map[i]) > max_cols)
+				max_cols = ft_strlen(map[i]);
+			j++;
+		}
 		i++;
 	}
-	return (true);
-}
-
-bool	check_borders(char **map, int height)
-{
-	if (check_first_line(map) == false)
-	{
-		printf("Error: First line is not properly closed.\n");
-		return (false);
-	}
-	if (check_last_line(map, height) == false)
-	{
-		printf("Error: Last line is not properly closed.\n");
-		return (false);
-	}
-	if (check_columns(map, height) == false)
-	{
-		printf("Error: Columns are not properly closed.\n");
-		return (false);
-	}
-	return (true);
+	info->cols = max_cols;
+	return (0);
 }

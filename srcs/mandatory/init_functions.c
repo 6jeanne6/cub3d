@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/09 10:36:19 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/15 16:20:27 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_info	*init_info(void)
 	info->mlx_ptr = mlx_init();
 	if (!info->mlx_ptr)
 		return (error("mlx_init failed"), free_info(info), NULL);
+	info->rows = 0;
+	info->cols = 0;
 	info->map = NULL;
 	info->loaded_elements = 0;
 	if (alloc_structures(info) == 1)
