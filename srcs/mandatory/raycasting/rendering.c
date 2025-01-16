@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 17:01:58 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/16 14:10:24 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double top_pixel)
 
 //DRAW THE WALL
 //1: load the wall texture
-//2: scale
+//2: scale to align memory pixel to screen pixel
 static void	draw_the_wall(t_info *info, double wall_height, double bottom_pixel,
 double top_pixel)
 {
@@ -51,7 +51,8 @@ double top_pixel)
 		y_gap = 0;
 	while (top_pixel < bottom_pixel)
 	{
-		//super_mlx_pixel_put();
+		//super_mlx_pixel_put(texture, info->ray->index,
+		//	top_pixel, the_texture_color(texture, x_gap, y_gap));
 		y_gap += scale;
 		top_pixel++;
 	}

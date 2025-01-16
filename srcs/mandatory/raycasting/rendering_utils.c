@@ -6,26 +6,46 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 16:59:57 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/16 15:17:13 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//put pixel with color at (x, y) coordinate
-void	super_mlx_pixel_put(t_info *info, int x, int y, int color)
+//put a RGB pixel color by getting the byte of the pixel at (x, y)
+int	the_texture_color(t_image *texture, float x_gap, float y_gap)
 {
-	(void)info;
+	//int	the_color;
+	//int	x;
+	//int	y;
+
+	//x = fabsf(fmodf(x_gap, TILE_SIZE) * (texture->width / TILE_SIZE));
+	//y = fabsf(fmodf(y_gap, TILE_SIZE) * (texture->height / TILE_SIZE));
+	//the_color = texture->address[y * texture->line_length + x * texture->bits_per_pixel
+	//	/ 8];
+	//the_color += texture->address[y * texture->line_length + x
+	//	* texture->bits_per_pixel / 8 + 1] << 8;
+	//the_color += texture->address[y * texture->line_length + x
+	//	* texture->bits_per_pixel / 8 + 2] << 16;
+	//return (the_color);
+	(void)texture;
+	(void)x_gap;
+	(void)y_gap;
+	return (1);
+}
+
+//put pixel with color at memory address of pixel
+void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
+{
+	//char	*dst;
+
+	//dst = texture->address + (y * texture->line_length + x
+	//		* (texture->bits_per_pixel / 8));
+	//*(unsigned int *)dst = color;
+	(void)texture;
+	(void)x;
+	(void)y;
 	(void)color;
-	if (x < 0)
-		return ;
-	else if (x > WIDTH)
-		return ;
-	if (y < 0)
-		return ;
-	else if (y > HEIGHT)
-		return ;
-	//mlx_pixel_put(void);
 }
 
 //return texture of a cardinal direction
@@ -33,11 +53,12 @@ t_image	*which_cardinal_direction(t_info *info, char *direction)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (info->textures[i])
 	{
 		if (!ft_strcmp(info->textures[i]->id, direction))
 			return (info->textures[i]->mlx_img);
+		i++;
 	}
 	return (NULL);
 }

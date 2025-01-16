@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 17:01:23 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/16 13:21:03 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,12 +152,14 @@ float	get_v_line_intersection(t_info *info, float angle);
 
 /*Rendering*/
 void	wall_rendering(t_info *info, int rayon);
-void	super_mlx_pixel_put(t_info *info, int x, int y, int color);
+void	super_mlx_pixel_put(t_image *texture, int x, int y, int color);
 
 float	get_x_gap(t_info *info, t_image *texture);
 
 t_image	*get_wall_texture_rendering(t_info *info, int hori_flag);
 t_image	*which_cardinal_direction(t_info *info, char *direction);
+
+int		the_texture_color(t_image *texture, float x_gap, float y_gap);
 
 /* Error */
 void	error(char *msg);
