@@ -3,26 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 16:58:44 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/21 16:06:44 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	get_adress(t_info *info, int identifier)
+{
+	if (identifier == NO)
+		mlx_get_data_addr(info->textures[0]->mlx_img, 
+		&info->textures[0]->bits_per_pixel, &info->textures[0]->size_line,
+			&info->textures[0]->endian);
+	else if (identifier == SO)
+		mlx_get_data_addr(info->textures[1]->mlx_img, 
+		&info->textures[1]->bits_per_pixel, &info->textures[1]->size_line,
+			&info->textures[1]->endian);
+	else if (identifier == WE)
+		mlx_get_data_addr(info->textures[2]->mlx_img, 
+		&info->textures[2]->bits_per_pixel, &info->textures[2]->size_line,
+			&info->textures[2]->endian);
+	else if (identifier == EA)
+		mlx_get_data_addr(info->textures[3]->mlx_img, 
+		&info->textures[3]->bits_per_pixel, &info->textures[3]->size_line,
+			&info->textures[3]->endian);
+}
+
 // Function to setup the structure id of the texture
 static int	setup_id(t_info *info, int identifier)
 {
 	if (identifier == NO)
-		info->textures[0]->id = "NO";
+		info->textures[0]->id = NO;
 	else if (identifier == SO)
-		info->textures[1]->id = "SO";
+		info->textures[1]->id = SO;
 	else if (identifier == WE)
-		info->textures[2]->id = "WE";
+		info->textures[2]->id = WE;
 	else if (identifier == EA)
-		info->textures[3]->id = "EA";
+		info->textures[3]->id = EA;
+	else if (identifier == F)
+		info->textures[4]->id = F;
+	else if (identifier == C)
+		info->textures[5]->id = C;
 	else
 		return (FAILURE);
 	return (SUCCESS);
@@ -78,6 +102,7 @@ static int	get_image(t_info *info, char *texture, int identifier)
 	else if (identifier == EA)
 		info->textures[3]->mlx_img = mlx_xpm_file_to_image(
 				info->mlx_ptr, texture, &width, &rows);
+	get_adress(info, identifier);
 	info->loaded_elements += 1;
 	return (0);
 }
