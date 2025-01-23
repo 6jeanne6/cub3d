@@ -6,30 +6,52 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 15:51:15 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:15:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //DRAW THE CEILING
-static void	draw_the_ceiling(t_info *info, int rayon, double bottom_pixel,
-double top_pixel)
+static void	draw_the_ceiling(t_info *info, int rayon, double top_pixel)
 {
-	(void)info;
-	(void)rayon;
-	(void)bottom_pixel;
-	(void)top_pixel;
+	int	i;
+	int	*rgb_ceiling;
+
+	i = -1;
+	while (info->textures[++i])
+	{
+		if (!ft_strcmp(info->textures[i]->id, "C"))
+		{
+			rgb_ceiling = info->ceiling_rgb[3];
+			break ;
+		}
+	}
+	i = 0;
+	while (i < top_pixel)
+		super_mlx_pixel_put(&info->img, rayon, i++,
+		the_texture_color(rgb_ceiling[0], rgb_ceiling[1], rgb_ceiling[2]));
 }
 
 //DRAW THE FLOOR
-static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel,
-double top_pixel)
+static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel)
 {
-	(void)info;
-	(void)rayon;
-	(void)bottom_pixel;
-	(void)top_pixel;
+	int	i;
+	int	*rgb_floor;
+
+	i = -1;
+	while (info->textures[++i])
+	{
+		if (!ft_strcmp(info->textures[i]->id, "F"))
+		{
+			rgb_floor = info->floor_rgb[3];
+			break ;
+		}
+	}
+	i = bottom_pixel;
+	while (i < HEIGHT)
+		super_mlx_pixel_put(&info->img, rayon, i++,
+		the_texture_color(rgb_flooor[0], rgb_floor[1], rgb_floor[2]));
 }
 
 //DRAW THE WALL
@@ -81,6 +103,6 @@ void	wall_rendering(t_info *info, int rayon)
 		top_pixel = 0;
 	info->ray->index = rayon;
 	draw_the_wall(info, wall_height, bottom_pixel, top_pixel);
-	draw_the_floor(info, rayon, bottom_pixel, top_pixel);
-	draw_the_ceiling(info, rayon, bottom_pixel, top_pixel);
+	draw_the_floor(info, rayon, bottom_pixel);
+	draw_the_ceiling(info, rayon, top_pixel);
 }

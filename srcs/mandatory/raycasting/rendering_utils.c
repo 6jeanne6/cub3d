@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 15:50:15 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:15:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,11 @@ int	the_texture_color(t_image *texture, float x_gap, float y_gap)
 //put pixel with color at memory address of pixel
 void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
 {
-	//char	*dst;
+	char	*dst;
 
-	//dst = texture->address + (y * texture->line_length + x
-	//		* (texture->bits_per_pixel / 8));
-	//*(unsigned int *)dst = color;
-	(void)texture;
-	(void)x;
-	(void)y;
-	(void)color;
+	dst = texture->address + (y * texture->line_length + x
+			* (texture->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 //return texture of a cardinal direction
