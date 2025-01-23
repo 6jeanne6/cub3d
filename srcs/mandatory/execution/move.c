@@ -55,22 +55,22 @@ void    i_can_move(t_info *info, double x_move, double y_move)
     if (info->go_up_down == GO_UP)
     {
         x_move = cos(mlx->ply->angle) * PLAYER_SPEED;
-		y_move = sin(mlx->ply->angle) * PLAYER_SPEED;
+        y_move = sin(mlx->ply->angle) * PLAYER_SPEED;
     }
     if (info->go_up_down == GO_DOWN)
     {
         x_move = -cos(mlx->ply->angle) * PLAYER_SPEED;
-		y_move = -sin(mlx->ply->angle) * PLAYER_SPEED;
+        y_move = -sin(mlx->ply->angle) * PLAYER_SPEED;
     }
     if (info->go_left_right == GO_LEFT)
     {
         x_move = -sin(mlx->ply->angle) * PLAYER_SPEED;
-		y_move = cos(mlx->ply->angle) * PLAYER_SPEED;
+        y_move = cos(mlx->ply->angle) * PLAYER_SPEED;
     }
     if (info->go_left_right == GO_RIGHT)
     {
         x_move = sin(mlx->ply->angle) * PLAYER_SPEED;
-		y_move = -cos(mlx->ply->angle) * PLAYER_SPEED;
+        y_move = -cos(mlx->ply->angle) * PLAYER_SPEED;
     }
     the_player_moves(info, x_move, y_move);
 }
