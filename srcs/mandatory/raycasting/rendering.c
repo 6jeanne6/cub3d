@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 17:01:58 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/23 15:51:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ double top_pixel)
 		y_gap = 0;
 	while (top_pixel < bottom_pixel)
 	{
-		//super_mlx_pixel_put();
+		super_mlx_pixel_put(texture, info->ray->index,
+			top_pixel, the_texture_color(texture, x_gap, y_gap));
 		y_gap += scale;
 		top_pixel++;
 	}

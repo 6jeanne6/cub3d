@@ -3,29 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 16:59:57 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/23 15:50:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//put pixel with color at (x, y) coordinate
-void	super_mlx_pixel_put(t_info *info, int x, int y, int color)
+//put a RGB pixel color by getting the byte of the pixel at (x, y)
+int	the_texture_color(t_image *texture, float x_gap, float y_gap)
 {
-	(void)info;
+	int	the_color;
+	int	x;
+	int	y;
+
+	x = fabsf(fmodf(x_gap, TILE_SIZE) * (texture->width / TILE_SIZE));
+	y = fabsf(fmodf(y_gap, TILE_SIZE) * (texture->height / TILE_SIZE));
+	the_color = texture->addr[y * texture->size_line + x * texture->bits_per_pixel
+		/ 8];
+	the_color += texture->addr[y * texture->size_line + x
+		* texture->bits_per_pixel / 8 + 1] << 8;
+	the_color += texture->addr[y * texture->size_line + x
+		* texture->bits_per_pixel / 8 + 2] << 16;
+	return (the_color);
+}
+
+//put pixel with color at memory address of pixel
+void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
+{
+	//char	*dst;
+
+	//dst = texture->address + (y * texture->line_length + x
+	//		* (texture->bits_per_pixel / 8));
+	//*(unsigned int *)dst = color;
+	(void)texture;
+	(void)x;
+	(void)y;
 	(void)color;
-	if (x < 0)
-		return ;
-	else if (x > WIDTH)
-		return ;
-	if (y < 0)
-		return ;
-	else if (y > HEIGHT)
-		return ;
-	//mlx_pixel_put(void);
 }
 
 //return texture of a cardinal direction
