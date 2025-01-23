@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr >                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 15:48:12 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/23 17:56:06 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,56 @@
 # define ERROR_MAP 2
 # define VALID_MAP_CHARS "01NSEW"
 
+# define WIDTH 900
+# define HEIGHT 900
+# define TILE_SIZE 64
+# define FOV 60
+# define ROT_SPEED 0.01
+# define PI 3.14159265359
+# define GO_LEFT 42
+# define GO_RIGHT 43
+# define GO_UP 44
+# define GO_DOWN 45
+# define ROTATE_LEFT 46
+# define ROTATE_RIGHT 47
+
 /* ****************************** */
 /*          Structures            */
 /* ****************************** */
 
+typedef struct s_ray
+{
+	double	ray_angle;
+	double	distance;
+
+	float	horizontal_x;
+	float	horizontal_y;
+	float	vertical_x;
+	float	vertical_y;
+
+	int		horizontal_flag;
+	int		index;
+}				t_ray;
+
+typedef struct s_player
+{
+	int		p_x;
+	int		p_y;
+
+	double	angle;
+
+	float	fov;
+}				t_player;
+
 typedef struct s_image
 {
 	void				*mlx_img;
+
+	char				*addr;
+
 	int					width;
 	int					height;
 	int					id;
-	char				*addr;
 	int					bits_per_pixel;
 	int					endian;
 	int					tile_size;
@@ -62,17 +101,23 @@ typedef struct s_image
 typedef struct s_info
 {
 	t_image				*textures[4];
-	int					floor_rgb[3];
 	t_image				img;
+
+	int					floor_rgb[3];
 	int					ceiling_rgb[3];
-	void				*mlx_ptr;
-	char				**map;
 	int					loaded_elements;
 	int					cols;
 	int					rows;
 	int					map_px;
 	int					map_py;
 	int					parsing_succeed;
+	int					go_up_down;
+	int					go_left_right;
+	int					rotation_left_right;
+
+	void				*mlx_ptr;
+
+	char				**map;
 }						t_info;
 
 /* ****************************** */
@@ -126,6 +171,15 @@ t_image	*get_wall_texture_rendering(t_info *info, int hori_flag);
 t_image	*which_cardinal_direction(t_info *info, char *direction);
 
 int		the_texture_color(t_image *texture, float x_gap, float y_gap);
+
+/*Execution*/
+void    lets_execute_the_game(t_info *info);
+void	keyboard_hook(t_info *info);
+void	the_player_moves(t_info *info, double x_move, double y_move);
+void	the_player_rotates(t_info *info, double x_move, double y_move, int right);
+void    i_can_move(t_info *info, double x_move, double y_move);
+
+int		handle_keypress(int key, t_info *info);
 
 /* Error */
 void	error(char *msg);

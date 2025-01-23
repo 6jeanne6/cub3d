@@ -58,6 +58,9 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/raycasting/raycaster_utils.c \
 				${SRCDIR}/mandatory/raycasting/rendering_utils.c \
 				${SRCDIR}/mandatory/raycasting/rendering.c \
+				${SRCDIR}/mandatory/execution/start_game.c \
+				${SRCDIR}/mandatory/execution/keypress.c \
+				${SRCDIR}/mandatory/execution/move.c \
 
 # BONUSDIR	= 	${SRCDIR}/bonus
 
