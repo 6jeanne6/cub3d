@@ -6,14 +6,20 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 12:48:43 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 14:37:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//create colors
+int	the_texture_rgb(int red, int blue, int green)
+{
+	return (red << 16 | blue << 8 | green);
+}
+
 //put a RGB pixel color by getting the byte of the pixel at (x, y)
-int	the_texture_color(t_image *texture, float x_gap, float y_gap)
+int	put_texture_color(t_image *texture, float x_gap, float y_gap)
 {
 	int	the_color;
 	int	x;
@@ -41,14 +47,14 @@ void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
 }
 
 //return texture of a cardinal direction
-t_image	*which_cardinal_direction(t_info *info, char *direction)
+t_image	*which_cardinal_direction(t_info *info, int direction)
 {
 	int	i;
 
 	i = -1;
 	while (info->textures[i])
 	{
-		if (!ft_strcmp(info->textures[i]->id, direction))
+		if (info->textures[i]->id == direction)
 			return (info->textures[i]->mlx_img);
 	}
 	return (NULL);

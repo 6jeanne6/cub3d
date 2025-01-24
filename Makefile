@@ -52,7 +52,6 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/parsing/parse_map.c \
 				${SRCDIR}/mandatory/parsing/parsing_utils.c \
 				${SRCDIR}/mandatory/parsing/check_borders.c \
-				${SRCDIR}/mandatory/init.c \
 				${SRCDIR}/mandatory/raycasting/raycaster.c \
 				${SRCDIR}/mandatory/raycasting/getter.c \
 				${SRCDIR}/mandatory/raycasting/raycaster_utils.c \
@@ -61,6 +60,7 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/execution/start_game.c \
 				${SRCDIR}/mandatory/execution/keypress.c \
 				${SRCDIR}/mandatory/execution/move.c \
+				${SRCDIR}/mandatory/execution/free_assets.c \
 
 # BONUSDIR	= 	${SRCDIR}/bonus
 

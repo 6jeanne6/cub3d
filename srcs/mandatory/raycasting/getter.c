@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:30:38 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 16:31:01 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 14:18:21 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ t_image	*get_wall_texture_rendering(t_info *info, int hori_flag)
 	if (hori_flag == 0)
 	{
 		if (info->ray->ray_angle > PI / 2 && info->ray->ray_angle < 3 * PI / 2)
-			return (which_cardinal_direction(info, "WE"));
+			return (which_cardinal_direction(info, WE));
 		else
-			return (which_cardinal_direction(info, "EA"));
+			return (which_cardinal_direction(info, EA));
 	}
 	else
 	{
 		if (info->ray->ray_angle > 0 && info->ray->ray_angle < PI)
-			return (which_cardinal_direction(info, "SO"));
+			return (which_cardinal_direction(info, SO));
 		else
-			return (which_cardinal_direction(info, "NO"));
+			return (which_cardinal_direction(info, NO));
 	}
 	return (NULL);
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 13:24:44 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 13:33:50 by jewu             ###   ########.fr       */
+/*   Created: 2025/01/24 13:40:18 by jewu              #+#    #+#             */
+/*   Updated: 2025/01/24 13:45:04 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+//free textures
+void	free_textures(t_info *info)
 {
-	t_info	*info;
+	int	i;
 
-	if (argc != 2)
-		return (error("Invalid number of arguments"), 1);
-	info = init_info();
-	if (!info)
-		return (1);
-	if (parsing(info, argv) == FAILURE)
-		return (free_info(info), 1);
-	if (init_window(info) == 1)
-		close_and_exit(info);
-	lets_execute_the_game(info);
-	return (SUCCESS);
+	i = -1;
+	while (++i < 4 && info->textures[i])
+	{
+		if (info->textures[i]->mlx_img)
+		{
+			mlx_destroy_image(info->mlx_ptr, info->textures[i]->mlx_img);
+			free(info->textures[i]->mlx_img);
+		}
+		free(info->textures[i]);
+	}
 }

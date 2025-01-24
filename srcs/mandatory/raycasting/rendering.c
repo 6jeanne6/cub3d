@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr >                 +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 18:03:27 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 14:37:36 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static void	draw_the_ceiling(t_info *info, int rayon, double top_pixel)
 	i = -1;
 	while (info->textures[++i])
 	{
-		if (!ft_strcmp(info->textures[i]->id, "C"))
+		if (info->textures[i]->id == C)
 		{
-			rgb_ceiling = info->ceiling_rgb[3];
+			rgb_ceiling = &info->ceiling_rgb[3];
 			break ;
 		}
 	}
 	i = 0;
 	while (i < top_pixel)
 		super_mlx_pixel_put(&info->img, rayon, i++,
-		the_texture_color(rgb_ceiling[0], rgb_ceiling[1], rgb_ceiling[2]));
+			the_texture_rgb(rgb_ceiling[0], rgb_ceiling[1], rgb_ceiling[2]));
 }
 
 //DRAW THE FLOOR
@@ -42,16 +42,16 @@ static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel)
 	i = -1;
 	while (info->textures[++i])
 	{
-		if (!ft_strcmp(info->textures[i]->id, "F"))
+		if (info->textures[i]->id == C)
 		{
-			rgb_floor = info->floor_rgb[3];
+			rgb_floor = &info->floor_rgb[3];
 			break ;
 		}
 	}
 	i = bottom_pixel;
 	while (i < HEIGHT)
 		super_mlx_pixel_put(&info->img, rayon, i++,
-		the_texture_color(rgb_flooor[0], rgb_floor[1], rgb_floor[2]));
+			the_texture_rgb(rgb_floor[0], rgb_floor[1], rgb_floor[2]));
 }
 
 //DRAW THE WALL
@@ -74,7 +74,7 @@ double top_pixel)
 	while (top_pixel < bottom_pixel)
 	{
 		super_mlx_pixel_put(texture, info->ray->index,
-			top_pixel, the_texture_color(texture, x_gap, y_gap));
+			top_pixel, put_texture_color(texture, x_gap, y_gap));
 		y_gap += scale;
 		top_pixel++;
 	}

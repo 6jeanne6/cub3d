@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/21 16:06:44 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:20:45 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 static void	get_adress(t_info *info, int identifier)
 {
 	if (identifier == NO)
-		mlx_get_data_addr(info->textures[0]->mlx_img, 
-		&info->textures[0]->bits_per_pixel, &info->textures[0]->size_line,
-			&info->textures[0]->endian);
+		mlx_get_data_addr(info->textures[0]->mlx_img,
+			&info->textures[0]->bits_per_pixel,
+			&info->textures[0]->size_line, &info->textures[0]->endian);
 	else if (identifier == SO)
-		mlx_get_data_addr(info->textures[1]->mlx_img, 
-		&info->textures[1]->bits_per_pixel, &info->textures[1]->size_line,
-			&info->textures[1]->endian);
+		mlx_get_data_addr(info->textures[1]->mlx_img,
+			&info->textures[1]->bits_per_pixel,
+			&info->textures[1]->size_line, &info->textures[1]->endian);
 	else if (identifier == WE)
-		mlx_get_data_addr(info->textures[2]->mlx_img, 
-		&info->textures[2]->bits_per_pixel, &info->textures[2]->size_line,
-			&info->textures[2]->endian);
+		mlx_get_data_addr(info->textures[2]->mlx_img,
+			&info->textures[2]->bits_per_pixel,
+			&info->textures[2]->size_line, &info->textures[2]->endian);
 	else if (identifier == EA)
-		mlx_get_data_addr(info->textures[3]->mlx_img, 
-		&info->textures[3]->bits_per_pixel, &info->textures[3]->size_line,
-			&info->textures[3]->endian);
+		mlx_get_data_addr(info->textures[3]->mlx_img,
+			&info->textures[3]->bits_per_pixel,
+			&info->textures[3]->size_line, &info->textures[3]->endian);
 }
 
 // Function to setup the structure id of the texture
@@ -43,10 +43,6 @@ static int	setup_id(t_info *info, int identifier)
 		info->textures[2]->id = WE;
 	else if (identifier == EA)
 		info->textures[3]->id = EA;
-	else if (identifier == F)
-		info->textures[4]->id = F;
-	else if (identifier == C)
-		info->textures[5]->id = C;
 	else
 		return (FAILURE);
 	return (SUCCESS);
