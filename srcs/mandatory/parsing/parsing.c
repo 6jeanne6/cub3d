@@ -85,6 +85,6 @@ int	parsing(t_info *info, char **argv)
 		return (close(fd), FAILURE);
 	if (is_all_ok(info) == FAILURE)
 		return (close(fd), FAILURE);
-	close (fd);
+	close(fd);
 	return (SUCCESS);
 }

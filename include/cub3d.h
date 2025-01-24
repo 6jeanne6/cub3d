@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 14:37:17 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 16:26:59 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ enum	e_error
 
 enum	e_texture
 {
-	NO,
+	NO = 2,
 	SO,
 	WE,
 	EA,
@@ -194,6 +194,7 @@ void	i_can_move(t_info *info, double x_move, double y_move);
 void	free_textures(t_info *info);
 
 int		handle_keypress(int key, t_info *info);
+int		handle_keyrelease(t_info *info);
 int		init_window(t_info *info);
 
 /* Error */

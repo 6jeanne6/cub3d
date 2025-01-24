@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 14:37:36 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 17:04:06 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel)
 	i = -1;
 	while (info->textures[++i])
 	{
-		if (info->textures[i]->id == C)
+		if (info->textures[i]->id == F)
 		{
 			rgb_floor = &info->floor_rgb[3];
 			break ;
@@ -73,7 +73,7 @@ double top_pixel)
 		y_gap = 0;
 	while (top_pixel < bottom_pixel)
 	{
-		super_mlx_pixel_put(texture, info->ray->index,
+		super_mlx_pixel_put(&info->img, info->ray->index,
 			top_pixel, put_texture_color(texture, x_gap, y_gap));
 		y_gap += scale;
 		top_pixel++;

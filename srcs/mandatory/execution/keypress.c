@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 //reset flag when keyrelease
-static void	handle_keyrelease(t_info *info)
+int	handle_keyrelease(t_info *info)
 {
 	if (info->go_left_right == GO_LEFT || info->go_left_right == GO_RIGHT)
 		info->go_left_right = 0;
@@ -22,6 +22,7 @@ static void	handle_keyrelease(t_info *info)
 	if (info->rotation_left_right == ROTATE_LEFT
 		|| info->rotation_left_right == ROTATE_RIGHT)
 		info->rotation_left_right = 0;
+	return (SUCCESS);
 }
 
 //set flag to a direction when keypress
@@ -41,14 +42,13 @@ int	handle_keypress(int key, t_info *info)
 		info->rotation_left_right = ROTATE_LEFT;
 	if (key == XK_Right)
 		info->rotation_left_right = ROTATE_RIGHT;
-	handle_keyrelease(info);
-	return (0);
+	return (SUCCESS);
 }
 
 void	keyboard_hook(t_info *info)
 {
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask,
 		&handle_keypress, info);
-	// mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask,
-	// 	&close_and_exit, info);
+	mlx_hook(info->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,
+		info);
 }
