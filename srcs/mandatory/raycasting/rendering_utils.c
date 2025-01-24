@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 16:15:48 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/24 12:48:43 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	the_texture_color(t_image *texture, float x_gap, float y_gap)
 
 	x = fabsf(fmodf(x_gap, TILE_SIZE) * (texture->width / TILE_SIZE));
 	y = fabsf(fmodf(y_gap, TILE_SIZE) * (texture->height / TILE_SIZE));
-	the_color = texture->addr[y * texture->size_line + x * texture->bits_per_pixel
-		/ 8];
+	the_color = texture->addr[y * texture->size_line + x
+		* texture->bits_per_pixel / 8];
 	the_color += texture->addr[y * texture->size_line + x
 		* texture->bits_per_pixel / 8 + 1] << 8;
 	the_color += texture->addr[y * texture->size_line + x
@@ -35,7 +35,7 @@ void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = texture->address + (y * texture->line_length + x
+	dst = texture->addr + (y * texture->size_line + x
 			* (texture->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr >                 +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/23 17:56:06 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/24 13:00:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_image
 typedef struct s_info
 {
 	t_image				*textures[4];
+	t_ray				*ray;
+	t_player			*player;
 	t_image				img;
 
 	int					floor_rgb[3];
@@ -110,12 +112,14 @@ typedef struct s_info
 	int					rows;
 	int					map_px;
 	int					map_py;
-	int					parsing_succeed;
+	int					screen_width;
+	int					screen_height;
 	int					go_up_down;
 	int					go_left_right;
 	int					rotation_left_right;
 
 	void				*mlx_ptr;
+	void				*win_ptr;
 
 	char				**map;
 }						t_info;

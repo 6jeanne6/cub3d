@@ -19,7 +19,8 @@ static void	handle_keyrelease(t_info *info)
 		info->go_left_right = 0;
 	if (info->go_up_down == GO_UP || info->go_up_down == GO_DOWN)
 		info->go_up_down = 0;
-	if (info->rotation_left_right == ROTATE_LEFT || info->rotation_left_right == ROTATE_RIGHT)
+	if (info->rotation_left_right == ROTATE_LEFT
+		|| info->rotation_left_right == ROTATE_RIGHT)
 		info->rotation_left_right = 0;
 }
 
