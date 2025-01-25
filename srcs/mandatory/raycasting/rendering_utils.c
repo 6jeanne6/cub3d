@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/25 15:52:38 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 16:32:17 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ void	super_mlx_pixel_put(t_image *texture, int x, int y, int color)
 
 	dst = texture->addr + (y * texture->size_line + x
 			* (texture->bits_per_pixel / 8));
-	printf("dst is: %p\n", dst);
-	printf("texture is: %p\n", texture);
-	printf("texture addr is: %p\n", texture->addr);
-	printf("texture size line is: %d\n", texture->size_line);
-	printf("texture bits per pixel is: %d\n", texture->bits_per_pixel);
-	printf("color is: %d\n", color);
 	*(unsigned int *)dst = color;
 }
 

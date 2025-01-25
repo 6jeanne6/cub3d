@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/25 15:45:43 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 16:54:38 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ void	wall_rendering(t_info *info, int rayon)
 
 	info->ray->distance *= cos(normal_angle(info->ray->ray_angle
 				- info->player->angle));
-	wall_height = (TILE_SIZE / info->ray->ray_angle) * ((WIDTH / 2)
+	wall_height = (TILE_SIZE / info->ray->distance) * ((WIDTH / 2)
 			/ tan(info->player->fov / 2));
 	bottom_pixel = (HEIGHT / 2) + (wall_height / 2);
 	top_pixel = (HEIGHT / 2) - (wall_height / 2);
-	if (bottom_pixel > WIDTH)
+	if (bottom_pixel > HEIGHT)
 		bottom_pixel = 0;
-	if (top_pixel < WIDTH)
+	if (top_pixel < 0)
 		top_pixel = 0;
 	info->ray->index = rayon;
 	draw_the_wall(info, wall_height, bottom_pixel, top_pixel);

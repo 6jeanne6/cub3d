@@ -14,12 +14,8 @@
 
 static int	loop_the_game(t_info *info)
 {
-	//t_info	*info;
-
-	//info = param;
+	printf("info in loop the game: %p\n", info);
 	mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
-	printf("info mlx ptr: %p\n", info->mlx_ptr);
-	printf("info img mlx img: %p\n", info->img.mlx_img);
 	init_img(info);
 	i_can_move(info, 0, 0);
 	raycasting(info, info->ray);
@@ -51,10 +47,12 @@ static void	init_vision(t_info *info)
 //launch the game
 void	lets_execute_the_game(t_info *info)
 {
+	printf("info in lets execute the game: %p\n", info);
 	init_vision(info);
 	keyboard_hook(info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask,
 		&close_and_exit, info);
+	printf("info before loop hook: %p\n", info);
 	mlx_loop_hook(info->mlx_ptr, &loop_the_game, info);
 	mlx_loop(info->mlx_ptr);
 }

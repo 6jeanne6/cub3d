@@ -15,6 +15,7 @@
 //reset flag when keyrelease
 int	handle_keyrelease(t_info *info)
 {
+	printf("info in keyrelease: %p\n", info);
 	if (info->go_left_right == GO_LEFT || info->go_left_right == GO_RIGHT)
 		info->go_left_right = 0;
 	if (info->go_up_down == GO_UP || info->go_up_down == GO_DOWN)
@@ -47,6 +48,7 @@ int	handle_keypress(int key, t_info *info)
 
 void	keyboard_hook(t_info *info)
 {
+	printf("info in keyboard hook: %p\n", info);
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask,
 		&handle_keypress, info);
 	mlx_hook(info->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:30:38 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 14:18:21 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 16:52:04 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,21 @@ float	get_v_line_intersection(t_info *info, float angle)
 
 	x_step = TILE_SIZE;
 	y_step = TILE_SIZE * tan(angle);
-	vert_x = floor((info->player->p_x / TILE_SIZE) * TILE_SIZE);
+	vert_x = floor(info->player->p_x / TILE_SIZE) * TILE_SIZE;
 	pixel = check_intersection(info->ray->ray_angle, &vert_x, &x_step, false);
-	vert_y = info->player->p_y + (vert_x - info->player->p_x) / tan(angle);
+	vert_y = info->player->p_y + (vert_x - info->player->p_x) * tan(angle);
 	if ((is_right_zone(info->ray->ray_angle, 'x') && y_step < 0)
 		|| (!is_right_zone(info->ray->ray_angle, 'x') && y_step > 0))
 		y_step *= -1;
-	while (hit_the_wall(info, vert_x, vert_y - pixel))
+	while (hit_the_wall(info, vert_x - pixel, vert_y))
 	{
 		vert_x += x_step;
 		vert_y += y_step;
 	}
 	info->ray->vertical_x = vert_x;
 	info->ray->vertical_y = vert_y;
-	return (sqrt(pow(vert_y, 2) + pow(vert_x, 2)));
+	return (sqrt(pow(vert_y - info->player->p_y, 2)
+			+ pow(vert_x - info->player->p_x, 2)));
 }
 
 //get coordinates of intersection point for
@@ -98,7 +99,7 @@ float	get_h_line_intersection(t_info *info, float angle)
 
 	y_step = TILE_SIZE;
 	x_step = TILE_SIZE / tan(angle);
-	hori_y = floor((info->player->p_y / TILE_SIZE) * TILE_SIZE);
+	hori_y = floor(info->player->p_y / TILE_SIZE) * TILE_SIZE;
 	pixel = check_intersection(info->ray->ray_angle, &hori_y, &y_step, true);
 	hori_x = info->player->p_x + (hori_y - info->player->p_y) / tan(angle);
 	if ((is_right_zone(info->ray->ray_angle, 'y') && x_step > 0)
@@ -111,5 +112,6 @@ float	get_h_line_intersection(t_info *info, float angle)
 	}
 	info->ray->horizontal_x = hori_x;
 	info->ray->horizontal_y = hori_y;
-	return (sqrt(pow(hori_x, 2) + pow(hori_y, 2)));
+	return (sqrt(pow(hori_x - info->player->p_x, 2)
+			+ pow(hori_y - info->player->p_y, 2)));
 }

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:40:58 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 16:27:42 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 16:36:38 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	raycasting(t_info *info, t_ray *ray)
 	double	v_inter;
 
 	rayon = 0;
-	ray->ray_angle = info->player->angle - (FOV / 2);
+	ray->ray_angle = info->player->angle - (info->player->fov / 2);
 	while (rayon < WIDTH)
 	{
 		ray->horizontal_flag = 0;
