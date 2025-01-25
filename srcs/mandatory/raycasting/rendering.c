@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 17:04:06 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 15:45:43 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ static void	draw_the_ceiling(t_info *info, int rayon, double top_pixel)
 	int	i;
 	int	*rgb_ceiling;
 
-	i = -1;
-	while (info->textures[++i])
-	{
-		if (info->textures[i]->id == C)
-		{
-			rgb_ceiling = &info->ceiling_rgb[3];
-			break ;
-		}
-	}
+	//i = -1;
+	//while (info->textures[++i])
+	//{
+	//	if (info->textures[i]->id == C)
+	//	{
+	//		rgb_ceiling = &info->ceiling_rgb[3];
+	//		break ;
+	//	}
+	//}
+	rgb_ceiling = &info->ceiling_rgb[3];
 	i = 0;
 	while (i < top_pixel)
 		super_mlx_pixel_put(&info->img, rayon, i++,
@@ -39,15 +40,16 @@ static void	draw_the_floor(t_info *info, int rayon, double bottom_pixel)
 	int	i;
 	int	*rgb_floor;
 
-	i = -1;
-	while (info->textures[++i])
-	{
-		if (info->textures[i]->id == F)
-		{
-			rgb_floor = &info->floor_rgb[3];
-			break ;
-		}
-	}
+	//i = -1;
+	//while (info->textures[++i])
+	//{
+	//	if (info->textures[i]->id == F)
+	//	{
+	//		rgb_floor = &info->floor_rgb[3];
+	//		break ;
+	//	}
+	//}
+	rgb_floor = &info->floor_rgb[3];
 	i = bottom_pixel;
 	while (i < HEIGHT)
 		super_mlx_pixel_put(&info->img, rayon, i++,

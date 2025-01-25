@@ -12,15 +12,19 @@
 
 #include "cub3d.h"
 
-static int	loop_the_game(void *param)
+static int	loop_the_game(t_info *info)
 {
-	t_info	*info;
+	//t_info	*info;
 
-	info = param;
-	//mlx_destroy_image(info->mlx_ptr, info->img);
+	//info = param;
+	mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
+	printf("info mlx ptr: %p\n", info->mlx_ptr);
+	printf("info img mlx img: %p\n", info->img.mlx_img);
+	init_img(info);
 	i_can_move(info, 0, 0);
-	printf("raycasting function\n");
 	raycasting(info, info->ray);
+	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr,
+		info->img.mlx_img, 0, 0);
 	return (0);
 }
 
@@ -47,7 +51,6 @@ static void	init_vision(t_info *info)
 //launch the game
 void	lets_execute_the_game(t_info *info)
 {
-	printf("lets execute the game\n");
 	init_vision(info);
 	keyboard_hook(info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask,

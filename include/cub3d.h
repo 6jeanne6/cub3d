@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/24 16:26:59 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 15:37:50 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ t_image	*get_wall_texture_rendering(t_info *info, int hori_flag);
 t_image	*which_cardinal_direction(t_info *info, int direction);
 
 int		put_texture_color(t_image *texture, float x_gap, float y_gap);
-int		the_texture_rgb(int red, int blue, int green);
+int		the_texture_rgb(int red, int green, int blue);
 
 /*Execution*/
 void	lets_execute_the_game(t_info *info);
@@ -192,6 +192,7 @@ void	the_player_moves(t_info *info, double x_move, double y_move);
 void	the_player_rotates(t_info *info, int right);
 void	i_can_move(t_info *info, double x_move, double y_move);
 void	free_textures(t_info *info);
+void	init_img(t_info *info);
 
 int		handle_keypress(int key, t_info *info);
 int		handle_keyrelease(t_info *info);

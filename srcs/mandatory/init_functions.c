@@ -6,11 +6,23 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/24 13:16:36 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/25 15:23:37 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//initialize image to manipulate pixels
+void	init_img(t_info *info)
+{
+	info->img.mlx_img = mlx_new_image(info->mlx_ptr,
+			info->screen_width, info->screen_height);
+	info->img.addr = mlx_get_data_addr(info->img.mlx_img,
+			&info->img.bits_per_pixel, &info->img.size_line, &info->img.endian);
+	info->img.tile_size = TILE_SIZE;
+	info->img.width = info->screen_width;
+	info->img.height = info->screen_height;
+}
 
 //initialize window
 int	init_window(t_info *info)
@@ -21,6 +33,7 @@ int	init_window(t_info *info)
 			info->screen_width, info->screen_height, "CUB3D");
 	if (!info->win_ptr)
 		return (error("Error of win ptr\n"), 1);
+	init_img(info);
 	return (0);
 }
 
