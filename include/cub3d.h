@@ -195,7 +195,8 @@ void	free_textures(t_info *info);
 void	init_img(t_info *info);
 
 int		handle_keypress(int key, t_info *info);
-int		handle_keyrelease(t_info *info);
+//int		handle_keyrelease(t_info *info);
+int    handle_keyrelease(int key, t_info *info);
 int		init_window(t_info *info);
 
 /* Error */

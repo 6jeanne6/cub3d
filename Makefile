@@ -4,7 +4,7 @@
 
 NAME		= cub3D
 NAME_BONUS	= cub3D_bonus
-CFLAG		= -Wall -Wextra -Werror -g3 -fsanitize=address,leak,undefined
+CFLAG		= -Wall -Wextra -Werror -g3 #-fsanitize=address,leak,undefined
 CC			= cc
 
 ################################################################################

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:33:16 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/15 16:40:36 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/26 21:57:09 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //the rayon touches the wall or not
 //check if we are not accessing outside of map
 // wall_x & wall_y = point position in 3D space in TILE
+/*
 int	hit_the_wall(t_info *info, float x, float y)
 {
 	int	wall_x;
@@ -30,6 +31,26 @@ int	hit_the_wall(t_info *info, float x, float y)
 		if (info->map[wall_y][wall_x] == '1')
 			return (0);
 	return (1);
+}
+*/
+int    hit_the_wall(t_info *info, float x, float y)
+{
+    int    wall_x;
+    int    wall_y;
+
+    if (!info || !info->map || !info->cols || !info->rows)
+        return (0);
+    if (x < 0 || y < 0)
+        return (0);
+    wall_x = floor(x / TILE_SIZE);
+    wall_y = floor(y / TILE_SIZE);
+    if (wall_x >= info->cols || wall_y >= info->rows)
+        return (0);
+    if (wall_y < 0 || wall_y >= info->rows || wall_x < 0 || wall_x >= (int)ft_strlen(info->map[wall_y]))
+        return (0);
+    if (info->map[wall_y][wall_x] == '1')
+        return (0);
+    return (1);
 }
 
 // 0 - π = right - left
