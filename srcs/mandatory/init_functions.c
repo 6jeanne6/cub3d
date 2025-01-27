@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/27 13:08:55 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 14:59:19 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_window(t_info *info)
 	info->screen_width = WIDTH;
 	info->screen_height = HEIGHT;
 	info->win_ptr = mlx_new_window(info->mlx_ptr,
-			info->screen_width, info->screen_height, "CUB3D");
+			info->screen_width, info->screen_height, "GET CUB3D");
 	if (!info->win_ptr)
 		return (error("Error of win ptr\n"), 1);
 	init_img(info);

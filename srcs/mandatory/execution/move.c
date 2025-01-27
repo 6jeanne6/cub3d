@@ -41,8 +41,13 @@ void	the_player_moves(t_info *info, double x_move, double y_move)
 	new_py = round(info->player->p_y + y_move);
 	on_map_x = new_px / TILE_SIZE;
 	on_map_y = new_py / TILE_SIZE;
-	info->player->p_x = new_px;
-	info->player->p_y = new_py;
+	if (info->map[on_map_y][on_map_x] != '1' && \
+	(info->map[on_map_y][info->player->p_x / TILE_SIZE] != '1' && \
+	info->map[info->player->p_y / TILE_SIZE][on_map_x] != '1'))
+	{
+		info->player->p_x = new_px;
+		info->player->p_y = new_py;
+	}
 }
 
 //move the player or the camera
