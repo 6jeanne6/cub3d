@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/25 16:21:33 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 13:08:55 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 //initialize image to manipulate pixels
 void	init_img(t_info *info)
 {
-	info->img.mlx_img = mlx_new_image(info->mlx_ptr,
-			info->screen_width, info->screen_height);
+	info->img.mlx_img = mlx_new_image(info->mlx_ptr, WIDTH, HEIGHT);
 	info->img.addr = mlx_get_data_addr(info->img.mlx_img,
 			&info->img.bits_per_pixel, &info->img.size_line, &info->img.endian);
 	info->img.tile_size = TILE_SIZE;

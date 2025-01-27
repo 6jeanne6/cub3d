@@ -14,7 +14,6 @@
 
 static int	loop_the_game(t_info *info)
 {
-	printf("info in loop the game: %p\n", info);
 	mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
 	init_img(info);
 	i_can_move(info, 0, 0);

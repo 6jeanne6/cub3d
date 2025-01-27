@@ -24,19 +24,19 @@ int    handle_keyrelease(int key, t_info *info)
         || info->rotation_left_right == ROTATE_RIGHT)
         info->rotation_left_right = 0;
     */
-    if (key == XK_a)
-        info->go_left_right = 0;
-    if (key == XK_d)
-        info->go_left_right = 0;
-    if (key == XK_w)
-        info->go_up_down = 0;
-    if (key == XK_s)
-        info->go_up_down = 0;
-    if (key == XK_Left)
-        info->rotation_left_right = 0;
-    if (key == XK_Right)
-        info->rotation_left_right = 0;
-    return (SUCCESS);
+	if (key == XK_a)
+		info->go_left_right = 0;
+	if (key == XK_d)
+		info->go_left_right = 0;
+	if (key == XK_w)
+		info->go_up_down = 0;
+	if (key == XK_s)
+		info->go_up_down = 0;
+	if (key == XK_Left)
+		info->rotation_left_right = 0;
+	if (key == XK_Right)
+		info->rotation_left_right = 0;
+	return (SUCCESS);
 }
 
 //set flag to a direction when keypress
@@ -61,7 +61,6 @@ int	handle_keypress(int key, t_info *info)
 
 void	keyboard_hook(t_info *info)
 {
-	printf("info in keyboard hook: %p\n", info);
 	mlx_hook(info->win_ptr, KeyPress, KeyPressMask,
 		&handle_keypress, info);
 	mlx_hook(info->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,

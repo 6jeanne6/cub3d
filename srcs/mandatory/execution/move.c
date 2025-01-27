@@ -54,23 +54,23 @@ void	i_can_move(t_info *info, double x_move, double y_move)
 		the_player_rotates(info, 1);
 	if (info->go_up_down == GO_UP)
 	{
-		x_move = cos(info->player->angle) * PLAYER_SPEED;
-		y_move = sin(info->player->angle) * PLAYER_SPEED;
+		x_move = cosf(info->player->angle) * PLAYER_SPEED;
+		y_move = sinf(info->player->angle) * PLAYER_SPEED;
 	}
 	if (info->go_up_down == GO_DOWN)
 	{
-		x_move = -cos(info->player->angle) * PLAYER_SPEED;
-		y_move = -sin(info->player->angle) * PLAYER_SPEED;
+		x_move = -cosf(info->player->angle) * PLAYER_SPEED;
+		y_move = -sinf(info->player->angle) * PLAYER_SPEED;
 	}
 	if (info->go_left_right == GO_LEFT)
 	{
-		x_move = -sin(info->player->angle) * PLAYER_SPEED;
-		y_move = cos(info->player->angle) * PLAYER_SPEED;
+		x_move = sinf(info->player->angle) * PLAYER_SPEED;
+		y_move = -cosf(info->player->angle) * PLAYER_SPEED;
 	}
 	if (info->go_left_right == GO_RIGHT)
 	{
-		x_move = sin(info->player->angle) * PLAYER_SPEED;
-		y_move = -cos(info->player->angle) * PLAYER_SPEED;
+		x_move = -sinf(info->player->angle) * PLAYER_SPEED;
+		y_move = cosf(info->player->angle) * PLAYER_SPEED;
 	}
 	the_player_moves(info, x_move, y_move);
 }

@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/25 15:37:50 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 14:28:01 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define HEIGHT 900
 # define TILE_SIZE 64
 # define FOV 60
-# define ROT_SPEED 0.01
+# define ROT_SPEED 0.1
 # define PLAYER_SPEED 5
 # define PI 3.14159265359
 

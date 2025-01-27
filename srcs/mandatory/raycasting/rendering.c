@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:13:27 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/25 16:54:38 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 14:31:06 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	wall_rendering(t_info *info, int rayon)
 	bottom_pixel = (HEIGHT / 2) + (wall_height / 2);
 	top_pixel = (HEIGHT / 2) - (wall_height / 2);
 	if (bottom_pixel > HEIGHT)
-		bottom_pixel = 0;
+		bottom_pixel = HEIGHT;
 	if (top_pixel < 0)
 		top_pixel = 0;
 	info->ray->index = rayon;

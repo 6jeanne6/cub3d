@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/25 16:32:17 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 14:10:25 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ int	put_texture_color(t_image *texture, float x_gap, float y_gap)
 	int	x;
 	int	y;
 
-	if (!texture || !texture->addr || texture->width <= 0 || texture->height <= 0)
-		return (0); // Return 0 or any default value if the texture is invalid
+	//if (!texture || !texture->addr || texture->width <= 0 || texture->height <= 0)
+	//	return (0); // Return 0 or any default value if the texture is invalid
 	x = fabsf(fmodf(x_gap, TILE_SIZE) * (texture->width / TILE_SIZE));
 	y = fabsf(fmodf(y_gap, TILE_SIZE) * (texture->height / TILE_SIZE));
+	//printf("x_gap: %f and y_gap: %f\n", x_gap, y_gap);
+	//printf("texture width: %d and texture height: %d\n", texture->width, texture->height);
+	//printf("x value: %d and y value: %d\n", x, y);
 	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
 		return (0); // Protect against out-of-bound coordinates
 	the_color = texture->addr[y * texture->size_line + x
