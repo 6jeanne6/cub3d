@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:10:40 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/27 16:03:12 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 18:35:58 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	free_img(t_info *info)
 	int	i;
 
 	i = 0;
-	while (i < 4 && info->textures[i])
+	while (i < 4)
 	{
-		if (info->textures[i]->mlx_img)
-			mlx_destroy_image(info->mlx_ptr, info->textures[i]->mlx_img);
+		//if (info->textures[i]->mlx_img)
+		//	mlx_destroy_image(info->mlx_ptr, info->textures[i]->mlx_img);
 		free(info->textures[i]->mlx_img);
 		free(info->textures[i]);
 		i++;
@@ -48,6 +48,7 @@ void	free_info(t_info *info)
 	if (!info)
 		return ;
 	free_img(info);
+	mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
 	if (info->win_ptr)
 		mlx_destroy_window(info->mlx_ptr, info->win_ptr);
 	if (info->mlx_ptr)

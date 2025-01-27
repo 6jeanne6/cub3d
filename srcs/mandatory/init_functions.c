@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/27 14:59:19 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 16:54:05 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ void	init_img(t_info *info)
 	info->img.addr = mlx_get_data_addr(info->img.mlx_img,
 			&info->img.bits_per_pixel, &info->img.size_line, &info->img.endian);
 	info->img.tile_size = TILE_SIZE;
-	info->img.width = info->screen_width;
-	info->img.height = info->screen_height;
+	info->img.width = info->cols;
+	info->img.height = info->rows;
 }
 
 //initialize window
 int	init_window(t_info *info)
 {
-	info->screen_width = WIDTH;
-	info->screen_height = HEIGHT;
-	info->win_ptr = mlx_new_window(info->mlx_ptr,
-			info->screen_width, info->screen_height, "GET CUB3D");
+	info->win_ptr = mlx_new_window(info->mlx_ptr, WIDTH, HEIGHT, "GET CUB3D");
 	if (!info->win_ptr)
 		return (error("Error of win ptr\n"), 1);
 	init_img(info);

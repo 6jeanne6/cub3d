@@ -40,7 +40,7 @@ static void	init_vision(t_info *info)
 		info->player->angle = 3 * PI / 2;
 	info->player->p_x = (info->map_px * TILE_SIZE) + TILE_SIZE / 2;
 	info->player->p_y = (info->map_py * TILE_SIZE) + TILE_SIZE / 2;
-	info->player->fov = (FOV * PI) / 180;
+	info->player->fov = (float)FOV * (PI / 180);
 }
 
 //launch the game
