@@ -47,12 +47,10 @@ static void	init_vision(t_info *info)
 //launch the game
 void	lets_execute_the_game(t_info *info)
 {
-	printf("info in lets execute the game: %p\n", info);
 	init_vision(info);
 	keyboard_hook(info);
 	mlx_hook(info->win_ptr, DestroyNotify, StructureNotifyMask,
 		&close_and_exit, info);
-	printf("info before loop hook: %p\n", info);
 	mlx_loop_hook(info->mlx_ptr, &loop_the_game, info);
 	mlx_loop(info->mlx_ptr);
 }

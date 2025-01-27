@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/24 14:20:45 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/27 13:02:36 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 static void	get_adress(t_info *info, int identifier)
 {
 	if (identifier == NO)
-		mlx_get_data_addr(info->textures[0]->mlx_img,
-			&info->textures[0]->bits_per_pixel,
-			&info->textures[0]->size_line, &info->textures[0]->endian);
+		info->textures[0]->addr = mlx_get_data_addr(info->textures[0]->mlx_img,
+				&info->textures[0]->bits_per_pixel,
+				&info->textures[0]->size_line, &info->textures[0]->endian);
 	else if (identifier == SO)
-		mlx_get_data_addr(info->textures[1]->mlx_img,
-			&info->textures[1]->bits_per_pixel,
-			&info->textures[1]->size_line, &info->textures[1]->endian);
+		info->textures[1]->addr = mlx_get_data_addr(info->textures[1]->mlx_img,
+				&info->textures[1]->bits_per_pixel,
+				&info->textures[1]->size_line, &info->textures[1]->endian);
 	else if (identifier == WE)
-		mlx_get_data_addr(info->textures[2]->mlx_img,
-			&info->textures[2]->bits_per_pixel,
-			&info->textures[2]->size_line, &info->textures[2]->endian);
+		info->textures[2]->addr = mlx_get_data_addr(info->textures[2]->mlx_img,
+				&info->textures[2]->bits_per_pixel,
+				&info->textures[2]->size_line, &info->textures[2]->endian);
 	else if (identifier == EA)
-		mlx_get_data_addr(info->textures[3]->mlx_img,
-			&info->textures[3]->bits_per_pixel,
-			&info->textures[3]->size_line, &info->textures[3]->endian);
+		info->textures[3]->addr = mlx_get_data_addr(info->textures[3]->mlx_img,
+				&info->textures[3]->bits_per_pixel,
+				&info->textures[3]->size_line, &info->textures[3]->endian);
 }
 
 // Function to setup the structure id of the texture
