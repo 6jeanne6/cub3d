@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/27 18:32:18 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/29 14:12:56 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,8 +195,7 @@ void	free_textures(t_info *info);
 void	init_img(t_info *info);
 
 int		handle_keypress(int key, t_info *info);
-//int		handle_keyrelease(t_info *info);
-int    handle_keyrelease(int key, t_info *info);
+int		handle_keyrelease(int key, t_info *info);
 int		init_window(t_info *info);
 
 /* Error */

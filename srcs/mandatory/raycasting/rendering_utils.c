@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:12:57 by jewu              #+#    #+#             */
-/*   Updated: 2025/01/27 17:02:40 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/29 14:11:52 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_image	*which_cardinal_direction(t_info *info, int direction)
 	while (info->textures[i])
 	{
 		if (info->textures[i]->id == direction)
-			return (info->textures[i]->mlx_img);
+			return (info->textures[i]);
 		i++;
 	}
 	return (NULL);

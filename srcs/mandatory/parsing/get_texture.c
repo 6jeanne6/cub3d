@@ -6,31 +6,11 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/27 16:44:04 by jewu             ###   ########.fr       */
+/*   Updated: 2025/01/29 14:11:26 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//static void	get_adress(t_info *info, int identifier)
-//{
-//	if (identifier == NO)
-//		info->textures[0]->addr = mlx_get_data_addr(info->textures[0]->mlx_img,
-//				&info->textures[0]->bits_per_pixel,
-//				&info->textures[0]->size_line, &info->textures[0]->endian);
-//	else if (identifier == SO)
-//		info->textures[1]->addr = mlx_get_data_addr(info->textures[1]->mlx_img,
-//				&info->textures[1]->bits_per_pixel,
-//				&info->textures[1]->size_line, &info->textures[1]->endian);
-//	else if (identifier == WE)
-//		info->textures[2]->addr = mlx_get_data_addr(info->textures[2]->mlx_img,
-//				&info->textures[2]->bits_per_pixel,
-//				&info->textures[2]->size_line, &info->textures[2]->endian);
-//	else if (identifier == EA)
-//		info->textures[3]->addr = mlx_get_data_addr(info->textures[3]->mlx_img,
-//				&info->textures[3]->bits_per_pixel,
-//				&info->textures[3]->size_line, &info->textures[3]->endian);
-//}
 
 // Function to setup the structure id of the texture
 static int	setup_id(t_info *info, int identifier)
@@ -76,50 +56,17 @@ static int	setup_id(t_info *info, int identifier)
 //	return (SUCCESS);
 //}
 
-// Function that loads the image from the path in the textures array
-//static int	get_image(t_info *info, char *texture, int identifier)
-//{
-//	int	width;
-//	int	rows;
-
-//	width = 32;
-//	rows = 32;
-//	if (already_created(info, identifier) == FAILURE)
-//		return (error("Double texture detected"), FAILURE);
-//	if (identifier == NO)
-//		info->textures[0]->mlx_img = mlx_xpm_file_to_image(
-//				info->mlx_ptr, texture, &width, &rows);
-//	else if (identifier == SO)
-//		info->textures[1]->mlx_img = mlx_xpm_file_to_image(
-//				info->mlx_ptr, texture, &width, &rows);
-//	else if (identifier == WE)
-//		info->textures[2]->mlx_img = mlx_xpm_file_to_image(
-//				info->mlx_ptr, texture, &width, &rows);
-//	else if (identifier == EA)
-//		info->textures[3]->mlx_img = mlx_xpm_file_to_image(
-//				info->mlx_ptr, texture, &width, &rows);
-//	get_adress(info, identifier);
-//	info->loaded_elements += 1;
-//	return (0);
-//}
-
-static t_image	*get_address(t_info *info, char *path)
+static void	get_address(t_info *info, char *path, t_image *texture)
 {
-	t_image	*img;
-
-	img = ft_calloc(1, sizeof(t_image));
-	if (!img)
-		close_and_exit(info);
-	img->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
-			&img->width, &img->height);
-	if (!img->mlx_img)
+	texture->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
+			&texture->width, &texture->height);
+	if (!texture->mlx_img)
 	{
-		free(img);
 		close_and_exit(info);
 	}
-	img->addr = mlx_get_data_addr(img->mlx_img, &img->bits_per_pixel,
-			&img->size_line, &img->endian);
-	return (img);
+	texture->addr = mlx_get_data_addr(texture->mlx_img,
+			&texture->bits_per_pixel, &texture->size_line,
+			&texture->endian);
 }
 
 static int	get_image(t_info *info, char *texture, int identifier)
@@ -129,7 +76,7 @@ static int	get_image(t_info *info, char *texture, int identifier)
 	(void)identifier;
 	//if (already_created(info, identifier) == FAILURE)
 	//	return (error("Double texture detected"), FAILURE);
-	info->textures[i]->mlx_img = get_address(info, texture);
+	get_address(info, texture, info->textures[i]);
 	i++;
 	info->loaded_elements += 1;
 	return (0);
