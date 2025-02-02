@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/29 14:11:26 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/02 17:07:21 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,6 @@ static int	setup_id(t_info *info, int identifier)
 	return (SUCCESS);
 }
 
-// Function to check if the texture is already created
-// Success if the texture is not created
-// Failure if the texture is already created
-//static int	already_created(t_info *info, int identifier)
-//{
-//	if (identifier == NO)
-//	{
-//		if (info->textures[0]->mlx_img != NULL)
-//			return (FAILURE);
-//	}
-//	if (identifier == SO)
-//	{
-//		if (info->textures[1]->mlx_img != NULL)
-//			return (FAILURE);
-//	}
-//	if (identifier == WE)
-//	{
-//		if (info->textures[2]->mlx_img != NULL)
-//			return (FAILURE);
-//	}
-//	if (identifier == EA)
-//	{
-//		if (info->textures[3]->mlx_img != NULL)
-//			return (FAILURE);
-//	}
-//	return (SUCCESS);
-//}
-
 static void	get_address(t_info *info, char *path, t_image *texture)
 {
 	texture->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
@@ -69,13 +41,10 @@ static void	get_address(t_info *info, char *path, t_image *texture)
 			&texture->endian);
 }
 
-static int	get_image(t_info *info, char *texture, int identifier)
+static int	get_image(t_info *info, char *texture)
 {
 	static int	i;
 
-	(void)identifier;
-	//if (already_created(info, identifier) == FAILURE)
-	//	return (error("Double texture detected"), FAILURE);
 	get_address(info, texture, info->textures[i]);
 	i++;
 	info->loaded_elements += 1;
@@ -102,7 +71,7 @@ int	get_texture(t_info *info, char *line, int identifier)
 	if (!texture)
 		return (error("Malloc failed"), FAILURE);
 	ft_strlcpy(texture, &line[i], j - i + 1);
-	if (get_image(info, texture, identifier) == FAILURE)
+	if (get_image(info, texture) == FAILURE)
 		return (free(texture), FAILURE);
 	setup_id(info, identifier);
 	free(texture);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_uitoa.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:27:47 by jewu              #+#    #+#             */
-/*   Updated: 2024/02/11 14:54:07 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/02 16:15:56 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ count_characters to count the number of characters in a number
 
 static void	ft_putnbr(unsigned int nb)
 {
-	if (nb >= 0 && nb < 10)
+	if (nb > 0 && nb < 10)
 		ft_putchar(nb + '0');
 	else if (nb >= 10)
 	{

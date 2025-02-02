@@ -20,7 +20,7 @@ static int	is_all_ok(t_info *info)
 	i = -1;
 	while (++i < 4)
 	{
-		if (!info->textures[i]->mlx_img)
+		if (!info->textures[i]->mlx_img || info->textures[i]->id == -1)
 			return (error("Something is wrong with textures"), FAILURE);
 	}
 	i = -1;

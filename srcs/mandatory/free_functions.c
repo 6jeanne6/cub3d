@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 17:10:40 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/29 14:13:39 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/02 17:11:21 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void	free_info(t_info *info)
 	if (!info)
 		return ;
 	free_img(info);
-	mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
-	if (info->win_ptr)
+	if (info->img.mlx_img && info->parsing_succeed == SUCCESS)
+		mlx_destroy_image(info->mlx_ptr, info->img.mlx_img);
+	if (info->win_ptr && info->parsing_succeed == SUCCESS)
 		mlx_destroy_window(info->mlx_ptr, info->win_ptr);
 	if (info->mlx_ptr)
 		mlx_destroy_display(info->mlx_ptr);

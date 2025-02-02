@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:39:50 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/29 13:58:40 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/02 17:06:12 by lnjoh-tc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ static int	init_textures(t_info *info)
 			error("ft_calloc failed");
 			return (0);
 		}
+		info->textures[i]->id = -1;
 		i++;
 	}
+	info->parsing_succeed = SUCCESS;
 	return (1);
 }
 

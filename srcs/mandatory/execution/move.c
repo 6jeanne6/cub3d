@@ -34,20 +34,9 @@ void	the_player_moves(t_info *info, double x_move, double y_move)
 {
 	int	new_px;
 	int	new_py;
-	int	on_map_x;
-	int	on_map_y;
 
 	new_px = roundf(info->player->p_x + x_move);
 	new_py = round(info->player->p_y + y_move);
-	on_map_x = new_px / TILE_SIZE;
-	on_map_y = new_py / TILE_SIZE;
-	//if (info->map[on_map_y][on_map_x] != '1' && \
-	//(info->map[on_map_y][info->player->p_x / TILE_SIZE] != '1' && \
-	//info->map[info->player->p_y / TILE_SIZE][on_map_x] != '1'))
-	//{
-	//	info->player->p_x = new_px;
-	//	info->player->p_y = new_py;
-	//}
 	info->player->p_x = new_px;
 	info->player->p_y = new_py;
 }

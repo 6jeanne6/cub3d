@@ -4,7 +4,7 @@
 NO ./assets/twisted_plant.xpm
 SO ./assets/old_wood.xpm
 WE ./assets/plywood.xpm
-EA ./assets/oak_tree.xpm
+WE ./assets/oak_tree.xpm
 
 F 220,              100,0
 C 225,30,0
