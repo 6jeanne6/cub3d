@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/02/03 11:24:26 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/03 14:34:18 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int		map_is_cub(char *argv);
 int		get_identifier(t_info *info, char *line);
 int		check_borders(t_info *info, char **map);
 
-bool	is_map_line(char *line, t_info *info);
+bool	is_map_line(char *line, t_info *info, int *return_value);
 bool	line_with_only_whitespace(char *line);
 
 void	get_player_position(t_info *info);

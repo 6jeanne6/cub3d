@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 16:59:04 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/03 11:24:09 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/03 14:27:38 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	extract_data_from_file(t_info *info, char *line, int fd)
 			return_value = get_rgb(info, &line[i + 1], id);
 		return (return_value);
 	}
-	if (info->loaded_elements == 6 && is_map_line(line, info))
+	if (info->loaded_elements == 6 && is_map_line(line, info, &return_value))
 		return_value = get_and_parse_map(info, line, fd);
 	return (return_value);
 }

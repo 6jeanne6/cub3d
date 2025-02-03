@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:55:26 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 15:09:18 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/03 14:47:59 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	parse_map(t_info *info)
 		return (error("Invalid characters detected in map"), 1);
 	if (check_doublons(info->map) == false)
 		return (error("There are issues with the player in the map.\n"
-				"Ensure there is exactly one player.\n"), 1);
+				"Ensure there is exactly one player."), 1);
 	if (check_empty_line(info->map) == true)
 		return (error("Empty lines detected in map"), 1);
 	if (check_borders(info, info->map) == 1)
-		return (error("The map is not surrounded by walls\n"), 1);
+		return (error("The map is not surrounded by walls"), 1);
 	get_player_position(info);
 	return (SUCCESS);
 }

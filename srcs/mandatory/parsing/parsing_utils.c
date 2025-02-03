@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:45 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/15 15:09:57 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/03 14:31:53 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	map_is_cub(char *argv)
 	return (FAILURE);
 }
 
-// Function to check if 
-bool	is_map_line(char *line, t_info *info)
+bool	is_map_line(char *line, t_info *info, int *return_value)
 {
 	int	i;
 
@@ -46,12 +45,19 @@ bool	is_map_line(char *line, t_info *info)
 	{
 		while (line[i] != '\0')
 		{
-			if ((line[i] == '1' || line[i] == '0'))
-				return (true);
+			if (line[i] != 'N' && line[i] != 'S' && line[i] != 'N'
+				&& line[i] != 'W' && line[i] != 'E' && line[i] != '0'
+				&& line[i] != '1' && !ft_isspace(line[i]))
+			{
+				error("Invalid character detected in file\n"
+					"Please be sure that the map is correctly formatted\n");
+				*return_value = FAILURE;
+				return (false);
+			}
 			i++;
 		}
 	}
-	return (false);
+	return (true);
 }
 
 // Function to get the player 2D position
