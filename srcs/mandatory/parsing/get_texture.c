@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnjoh-tc <lnjoh-tc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/02 17:07:21 by lnjoh-tc         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:25:47 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ static int	setup_id(t_info *info, int identifier)
 	return (SUCCESS);
 }
 
-static void	get_address(t_info *info, char *path, t_image *texture)
+static void	get_address(t_info *info, char *path, t_image *texture,
+char *og_line)
 {
 	texture->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
 			&texture->width, &texture->height);
 	if (!texture->mlx_img)
 	{
+		error("Something is wrong with your image");
+		free(path);
+		free(og_line);
+		get_next_line(GNL_CLEAR);
 		close_and_exit(info);
 	}
 	texture->addr = mlx_get_data_addr(texture->mlx_img,
@@ -41,11 +46,11 @@ static void	get_address(t_info *info, char *path, t_image *texture)
 			&texture->endian);
 }
 
-static int	get_image(t_info *info, char *texture)
+static int	get_image(t_info *info, char *texture, char *og_line)
 {
 	static int	i;
 
-	get_address(info, texture, info->textures[i]);
+	get_address(info, texture, info->textures[i], og_line);
 	i++;
 	info->loaded_elements += 1;
 	return (0);
@@ -55,7 +60,7 @@ static int	get_image(t_info *info, char *texture)
 the texture depending on the identifier */
 /* Example: If ID = NO, 
 we know where to store the texture in the textures array (index 0) */
-int	get_texture(t_info *info, char *line, int identifier)
+int	get_texture(t_info *info, char *line, int identifier, char *og_line)
 {
 	char	*texture;
 	int		i;
@@ -71,7 +76,7 @@ int	get_texture(t_info *info, char *line, int identifier)
 	if (!texture)
 		return (error("Malloc failed"), FAILURE);
 	ft_strlcpy(texture, &line[i], j - i + 1);
-	if (get_image(info, texture) == FAILURE)
+	if (get_image(info, texture, og_line) == FAILURE)
 		return (free(texture), FAILURE);
 	setup_id(info, identifier);
 	free(texture);

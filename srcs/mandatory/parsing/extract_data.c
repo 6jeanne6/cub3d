@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 16:59:04 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/01/24 16:07:29 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/03 11:24:09 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	extract_data_from_file(t_info *info, char *line, int fd)
 		if (id == FAILURE)
 			return (FAILURE);
 		if (id == NO || id == SO || id == WE || id == EA)
-			return_value = get_texture(info, &line[i + 2], id);
+			return_value = get_texture(info, &line[i + 2], id, line);
 		if (id == F || id == C)
 			return_value = get_rgb(info, &line[i + 1], id);
 		return (return_value);

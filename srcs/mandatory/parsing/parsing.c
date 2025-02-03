@@ -60,9 +60,9 @@ static int	read_and_extract(t_info *info, int fd)
 		}
 		return_value = extract_data_from_file(info, line, fd);
 		if (return_value == FAILURE)
-			return (get_next_line(-42), free(line), FAILURE);
+			return (get_next_line(GNL_CLEAR), free(line), FAILURE);
 		else if (return_value == ERROR_MAP)
-			return (get_next_line(-42), FAILURE);
+			return (get_next_line(GNL_CLEAR), FAILURE);
 		if (info->loaded_elements != 7)
 			free (line);
 		line = get_next_line(fd);
