@@ -13,9 +13,9 @@ CC			= cc
 
 INCDIR 	 		= include
 INC	   	 		= ${INCDIR}/cub3d.h
-# INCBONUS 		= ${INCDIR}/cub3d_bonus.h
+INCBONUS 		= ${INCDIR}/cub3d_bonus.h
 INCLUDES 		= -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
-# INCLUDES_BONUS 	= -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
+INCLUDES_BONUS 	= -I ${INCDIR} -I./${LIBFT_PATH}include -I./${MINILBX_PATH}
 
 ################################################################################
 #                                 Libft                                        #
@@ -62,11 +62,32 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 				${SRCDIR}/mandatory/execution/move.c \
 				${SRCDIR}/mandatory/execution/free_assets.c \
 
-# BONUSDIR	= 	${SRCDIR}/bonus
+BONUSDIR	= 	${SRCDIR}/bonus
 
-# BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
+BONUS_SRC 	=	${BONUSDIR}/main_bonus.c \
+				${BONUSDIR}/error_msg.c \
+				${BONUSDIR}/diagnostics.c \
+				${BONUSDIR}/init_functions.c \
+				${BONUSDIR}/free_functions.c \
+				${BONUSDIR}/parsing/parsing.c \
+				${BONUSDIR}/parsing/extract_data.c \
+				${BONUSDIR}/parsing/get_map.c \
+				${BONUSDIR}/parsing/get_rgb.c \
+				${BONUSDIR}/parsing/get_texture.c \
+				${BONUSDIR}/parsing/parse_map.c \
+				${BONUSDIR}/parsing/parsing_utils.c \
+				${BONUSDIR}/parsing/check_borders.c \
+				${BONUSDIR}/raycasting/raycaster.c \
+				${BONUSDIR}/raycasting/getter.c \
+				${BONUSDIR}/raycasting/raycaster_utils.c \
+				${BONUSDIR}/raycasting/rendering_utils.c \
+				${BONUSDIR}/raycasting/rendering.c \
+				${BONUSDIR}/execution/start_game.c \
+				${BONUSDIR}/execution/keypress.c \
+				${BONUSDIR}/execution/move.c \
+				${BONUSDIR}/execution/free_assets.c \
 
-# SRCS_BONUS 	= 	${BONUS_SRC}
+SRCS_BONUS 	= 	${BONUS_SRC}
 
 ################################################################################
 #                                   Objects                                    #
@@ -74,11 +95,16 @@ SRC			=	${SRCDIR}/mandatory/main.c \
 
 OBJDIR 		= objs
 
+OBJDIRBONUS = objsbonus
+
 OBJ    		= ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
 
-# OBJS 		= ${BONUS_SRC:${BONUSDIR}/%.c=${OBJDIR}/%.o}
+#OBJS 		= ${BONUS_SRC:${BONUSDIR}/%.c=${OBJDIR}/%.o}
 
-# OBJS_BONUS 	= ${OBJS}
+OBJS 		= ${BONUS_SRC:${BONUSDIR}/%.c=${OBJDIRBONUS}/%.o}
+
+
+OBJS_BONUS 	= ${OBJS}
 
 ################################################################################
 #                                   Colors                                     #
@@ -108,16 +134,16 @@ ${OBJDIR}/%.o: ${SRCDIR}/%.c ${INC}
 	@${CC} ${CFLAG} ${INCLUDES} -c $< -o $@
 	@echo "${GREEN}***  CUB3D: compilation success  ***${RESET}"
 
-# bonus: ${LIBFT_FILE} ${MINILBX_FILE} ${NAME_BONUS}
+bonus: ${LIBFT_FILE} ${MINILBX_FILE} ${NAME_BONUS}
 
-# ${NAME_BONUS} : ${OBJS_BONUS}
-# 	@${CC} ${CFLAG} ${INCLUDES_BONUS} ${OBJS_BONUS} ${LFLAG} ${MLXFLAG} -o ${NAME_BONUS}
-# 	@echo "${YELLOW}✰✰✰ Bonus has been compiled ✰✰✰ :D${RESET}"
+${NAME_BONUS} : ${OBJS_BONUS}
+	@${CC} ${CFLAG} ${INCLUDES_BONUS} ${OBJS_BONUS} ${LFLAG} ${MLXFLAG} -o ${NAME_BONUS}
+	@echo "${YELLOW}✰✰✰ Bonus has been compiled ✰✰✰ :D${RESET}"
 
-# ${OBJDIR}/%.o: ${BONUSDIR}/%.c ${INCBONUS}
-# 	@mkdir -p ${dir $@}
-# 	@${CC} ${CFLAG} ${INCLUDES_BONUS} -c $< -o $@
-# 	@echo "${GREEN}***  Bonus compilation success  ***${RESET}"
+${OBJDIRBONUS}/%.o: ${BONUSDIR}/%.c ${INCBONUS}
+	@mkdir -p ${dir $@}
+	@${CC} ${CFLAG} ${INCLUDES_BONUS} -c $< -o $@
+	@echo "${GREEN}***  Bonus compilation success  ***${RESET}"
 
 ${LIBFT_FILE} :
 	@make -sC libft
@@ -126,7 +152,7 @@ ${MINILBX_FILE} :
 	@make -sC mlx-linux
 
 clean: 
-	@rm -rf ${OBJDIR}
+	@rm -rf ${OBJDIR} ${OBJDIRBONUS}
 	@echo "${PURPLE}► Cleaning done: ${OBJDIR} directory has been removed ◄${RESET}"
 	@make clean -C ${LIBFT_PATH}
 
