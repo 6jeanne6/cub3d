@@ -12,7 +12,7 @@ This project was done by two students : [6jeanne6](https://github.com/6jeanne6) 
 
 • Parsing and error management
 
-• Graphics using Minilbx, 42's graphical library: window, images, pixels, colors
+• Graphics using Minilibx, 42's graphical library: window, images, pixels, colors
 
 • Wall collision in Bonus
 
@@ -37,7 +37,7 @@ make
 make bonus
 ```
 
-# 🚀 Usage
+# 🎮 Usage
 
 To launch the game: 
 
