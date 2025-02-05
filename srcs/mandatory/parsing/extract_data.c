@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 16:59:04 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/03 14:27:38 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/05 12:00:12 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	get_identifier(t_info *info, char *line)
 	error("Invalid identifier/character detected in file\n"
 		"Please be sure that the file is correctly formatted\n"
 		"Valid identifiers are: NO, SO, WE, EA, F, C\n"
-		"The map is at the ending of the file\n");
+		"The map is at the ending of the file");
 	return (FAILURE);
 }
 
@@ -87,7 +87,10 @@ int	extract_data_from_file(t_info *info, char *line, int fd)
 		if (id == FAILURE)
 			return (FAILURE);
 		if (id == NO || id == SO || id == WE || id == EA)
+		{
 			return_value = get_texture(info, &line[i + 2], id, line);
+			//return_value = get_texture(info, line, id, fd);
+		}
 		if (id == F || id == C)
 			return_value = get_rgb(info, &line[i + 1], id);
 		return (return_value);

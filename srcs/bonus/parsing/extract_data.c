@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 16:59:04 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/03 15:05:38 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/05 12:00:27 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	get_identifier(t_info *info, char *line)
 	error("Invalid identifier/character detected in file\n"
 		"Please be sure that the file is correctly formatted\n"
 		"Valid identifiers are: NO, SO, WE, EA, F, C\n"
-		"The map is at the ending of the file\n");
+		"The map is at the ending of the file");
 	return (FAILURE);
 }
 

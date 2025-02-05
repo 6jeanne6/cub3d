@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/03 15:05:31 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/05 11:43:29 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ static int	setup_id(t_info *info, int identifier)
 static void	get_address(t_info *info, char *path, t_image *texture,
 char *og_line)
 {
-	texture->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
-			&texture->width, &texture->height);
+	static int	i;
+
+	if (i < 4)
+	{
+		texture->mlx_img = mlx_xpm_file_to_image(info->mlx_ptr, path,
+				&texture->width, &texture->height);
+		i++;
+	}
 	if (!texture->mlx_img)
 	{
 		error("Something is wrong with your image");
