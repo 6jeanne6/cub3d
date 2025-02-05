@@ -4,6 +4,10 @@ Inspired by the world-famous Wolfenstein 3D game, `cub3D` is a project from 42 C
 
 This project was done by two students : [6jeanne6](https://github.com/6jeanne6) and [Lothinnt](https://github.com/Lothinnt)
 
+<p align="center">
+  <img src="https://github.com/6jeanne6/cub3d/blob/main/image_cub3d.png" width="500"/>
+</p>
+
 **Main features are:**
 
 • Move player : A, D, W, S
