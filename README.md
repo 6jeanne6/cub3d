@@ -42,6 +42,6 @@ make bonus
 To launch the game: 
 
 ```
-./cub3d map.cub
-./cub3d_bonus map.cub
+./cub3D map.cub
+./cub3D_bonus map.cub
 ```
