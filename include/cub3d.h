@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:25:04 by jewu              #+#    #+#             */
-/*   Updated: 2025/02/05 11:59:23 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/05 12:09:22 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,8 @@ t_info	*init_info(void);
 int		parsing(t_info *info, char **argv);
 int		extract_data_from_file(t_info *info, char *line, int fd);
 int		get_rgb(t_info *info, char *line, int identifier);
-int		get_texture(t_info *info, char *line, int identifier, char *og_line);
-//int		get_texture(t_info *info, char *line, int identifier, int fd);
+//int		get_texture(t_info *info, char *line, int identifier, char *og_line);
+int		get_texture(t_info *info, char *line, int identifier, int fd);
 int		get_and_parse_map(t_info *info, char *line, int fd);
 int		parse_map(t_info *info);
 int		ft_isspace(char c);

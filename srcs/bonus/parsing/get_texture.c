@@ -6,7 +6,7 @@
 /*   By: jewu <jewu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:29:49 by lnjoh-tc          #+#    #+#             */
-/*   Updated: 2025/02/05 11:43:29 by jewu             ###   ########.fr       */
+/*   Updated: 2025/02/05 12:19:20 by jewu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,26 @@ static int	get_image(t_info *info, char *texture, char *og_line)
 the texture depending on the identifier */
 /* Example: If ID = NO, 
 we know where to store the texture in the textures array (index 0) */
-int	get_texture(t_info *info, char *line, int identifier, char *og_line)
+int	get_texture(t_info *info, char *line, int identifier, int fd)
 {
 	char	*texture;
+	char	*right_line;
 	int		i;
 	int		j;
 
+	(void)fd;
 	i = 0;
-	while (line[i] && ft_isspace(line[i]) == 1)
+	right_line = &line[i + 2];
+	while (right_line[i] && ft_isspace(right_line[i]) == 1)
 		i++;
 	j = i;
-	while (line[j] && !ft_isspace(line[j]))
+	while (right_line[j] && !ft_isspace(right_line[j]))
 		j++;
 	texture = malloc(sizeof(char) * (j - i + 1));
 	if (!texture)
 		return (error("Malloc failed"), FAILURE);
-	ft_strlcpy(texture, &line[i], j - i + 1);
-	if (get_image(info, texture, og_line) == FAILURE)
+	ft_strlcpy(texture, &right_line[i], j - i + 1);
+	if (get_image(info, texture, line) == FAILURE)
 		return (free(texture), FAILURE);
 	setup_id(info, identifier);
 	free(texture);
